@@ -1,2 +1,8 @@
+ext {
+    projectModuleDescription = 'Underscore String Builder'
+}
+
 dependencies {
 }
+
+apply from: '../gradle/upload_archives.gradle'

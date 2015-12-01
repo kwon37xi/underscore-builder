@@ -1,3 +1,7 @@
+ext {
+    projectModuleDescription = 'Underscore QL Builder'
+}
 dependencies {
     compile project(':underscore-string-builder')
 }
+apply from: '../gradle/upload_archives.gradle'
