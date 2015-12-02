@@ -35,6 +35,11 @@ subprojects {
         testCompile "org.assertj:assertj-core:${assertjVersion}"
     }
 
+//    tasks.withType(JavaCompile) {
+//        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+//    }
+    compileJava.options.compilerArgs = ['-Xlint:unchecked',"-Xlint:deprecation"]
+
     jacoco {
         toolVersion = '0.7.5.201505241946'
     }
