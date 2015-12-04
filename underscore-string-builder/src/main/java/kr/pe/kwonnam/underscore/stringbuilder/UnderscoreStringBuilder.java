@@ -73,24 +73,32 @@ public class UnderscoreStringBuilder implements UnderscoreBuilder<UnderscoreStri
         return null;
     }
 
+    /**
+     * @see StringBuilder#length()
+     */
     @Override
     public int length() {
-        return 0;
+        return stringBuilder.length();
     }
 
+    /**
+     * @see StringBuilder#charAt(int)
+     */
     @Override
     public char charAt(int index) {
-        return 0;
+        return stringBuilder.charAt(index);
     }
 
+    /**
+     * @see StringBuilder#subSequence(int, int)
+     */
     @Override
     public CharSequence subSequence(int start, int end) {
-        return null;
+        return stringBuilder.subSequence(start, end);
     }
 
     @Override
     public String toString() {
         return stringBuilder.toString();
     }
-
 }

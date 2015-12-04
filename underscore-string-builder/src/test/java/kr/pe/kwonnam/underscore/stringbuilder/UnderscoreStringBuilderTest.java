@@ -3,6 +3,7 @@ package kr.pe.kwonnam.underscore.stringbuilder;
 import kr.pe.kwonnam.underscore.UnderscoreFilter;
 import kr.pe.kwonnam.underscore.UnderscorePredicate;
 import org.hamcrest.CoreMatchers;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -136,5 +137,29 @@ public class UnderscoreStringBuilderTest {
             assertThat("Must throw an exception",
                 ex.getMessage(), CoreMatchers.is("underscorePredicate must not be null."));
         }
+    }
+
+    @Test
+    public void length() throws Exception {
+        underscoreStringBuilder.__("hello");
+        assertThat(underscoreStringBuilder.length(), is(5));
+
+        underscoreStringBuilder.__("12345");
+        assertThat(underscoreStringBuilder.length(), is(10));
+    }
+
+    @Test
+    public void charAt() throws Exception {
+        underscoreStringBuilder.__("hello");
+        assertThat(underscoreStringBuilder.charAt(0), is('h'));
+        assertThat(underscoreStringBuilder.charAt(4), is('o'));
+    }
+
+    @Test
+    public void subSequence() throws Exception {
+        underscoreStringBuilder.__("hello world");
+
+        assertThat(underscoreStringBuilder.subSequence(0, 5), is((CharSequence) "hello"));
+        assertThat(underscoreStringBuilder.subSequence(6, 11), is((CharSequence) "world"));
     }
 }
