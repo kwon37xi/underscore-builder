@@ -7,9 +7,8 @@ import java.util.Map;
 
 /**
  * UnderscoreStringBuilder builds string.
- *
  */
-public class UnderscoreStringBuilder extends AbstractUnderscoreBuilder<UnderscoreStringBuilder> {
+public class UnderscoreStringBuilder implements UnderscoreBuilder<UnderscoreStringBuilder> {
     private StringBuilder stringBuilder;
 
     public UnderscoreStringBuilder() {
@@ -22,20 +21,17 @@ public class UnderscoreStringBuilder extends AbstractUnderscoreBuilder<Underscor
 
     @Override
     public UnderscoreStringBuilder __(Object appendee) {
-        super.__(appendee);
-        return this;
+        return __(true, appendee);
     }
 
     @Override
     public UnderscoreStringBuilder __(boolean appendable, Object appendee) {
-        super.__(appendable, appendee);
-        return this;
+        return __(appendable, appendee, null);
     }
 
     @Override
     public UnderscoreStringBuilder __(Object appendee, UnderscoreFilter<UnderscoreStringBuilder> filter) {
-        super.__(appendee, filter);
-        return this;
+        return __(true, appendee, filter);
     }
 
     @Override
@@ -55,20 +51,20 @@ public class UnderscoreStringBuilder extends AbstractUnderscoreBuilder<Underscor
 
     @Override
     public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, Object appendee) {
-        super.__(underscorePredicate, appendee);
-        return this;
+        return __(underscorePredicate, appendee, null);
     }
 
     @Override
     public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, Object appendee, UnderscoreFilter<UnderscoreStringBuilder> filter) {
-        super.__(underscorePredicate, appendee, filter);
-        return this;
+        if (underscorePredicate == null) {
+            throw new IllegalArgumentException("underscorePredicate must not be null.");
+        }
+        return __(underscorePredicate.evaluate(), appendee, filter);
     }
 
     @Override
     public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, UnderscoreSubBuild underscoreSubBuild) {
-        super.__(underscorePredicate, underscoreSubBuild);
-        return this;
+        return __(underscorePredicate.evaluate(), underscoreSubBuild);
     }
 
     @Override
