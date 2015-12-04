@@ -1,22 +1,18 @@
 package kr.pe.kwonnam.underscore.stringbuilder;
 
-import kr.pe.kwonnam.underscore.UnderscoreBuilder;
 import kr.pe.kwonnam.underscore.UnderscoreFilter;
 import kr.pe.kwonnam.underscore.UnderscorePredicate;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.util.Date;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isEmptyString;
-import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 public class UnderscoreStringBuilderTest {
     private Logger log = LoggerFactory.getLogger(UnderscoreStringBuilderTest.class);
@@ -41,10 +37,10 @@ public class UnderscoreStringBuilderTest {
 
     @Test
     public void __and_filter() throws Exception {
-        underscoreStringBuilder.__(123, new UnderscoreFilter<UnderscoreStringBuilder>() {
+        underscoreStringBuilder.__(123, new UnderscoreFilter<UnderscoreStringBuilder, Integer>() {
             @Override
-            public void filter(UnderscoreStringBuilder underscoreBuilder, Object appended) {
-                int i = ((Integer) appended) * 2;
+            public void filter(UnderscoreStringBuilder underscoreBuilder, Integer appended) {
+                int i = appended * 2;
                 underscoreBuilder.__(i);
             }
         });
@@ -68,9 +64,9 @@ public class UnderscoreStringBuilderTest {
 
     @Test
     public void __and_appendable_false_and_filter() throws Exception {
-        underscoreStringBuilder.__(false, new Date(), new UnderscoreFilter<UnderscoreStringBuilder>() {
+        underscoreStringBuilder.__(false, new Date(), new UnderscoreFilter<UnderscoreStringBuilder, Date>() {
             @Override
-            public void filter(UnderscoreStringBuilder underscoreBuilder, Object appended) {
+            public void filter(UnderscoreStringBuilder underscoreBuilder, Date appended) {
                 underscoreBuilder.__(appended);
             }
         });
@@ -80,9 +76,9 @@ public class UnderscoreStringBuilderTest {
 
     @Test
     public void __and_appendable_true_and_filter() throws Exception {
-        underscoreStringBuilder.__(true, new Date(), new UnderscoreFilter<UnderscoreStringBuilder>() {
+        underscoreStringBuilder.__(true, new Date(), new UnderscoreFilter<UnderscoreStringBuilder, Date>() {
             @Override
-            public void filter(UnderscoreStringBuilder underscoreBuilder, Object appended) {
+            public void filter(UnderscoreStringBuilder underscoreBuilder, Date appended) {
                 underscoreBuilder.__(appended);
             }
         });
@@ -121,10 +117,10 @@ public class UnderscoreStringBuilderTest {
             public boolean evaluate() {
                 return true;
             }
-        }, -123, new UnderscoreFilter<UnderscoreStringBuilder>() {
+        }, -123, new UnderscoreFilter<UnderscoreStringBuilder, Integer>() {
             @Override
-            public void filter(UnderscoreStringBuilder underscoreBuilder, Object appended) {
-                underscoreBuilder.__(Math.abs((Integer)appended));
+            public void filter(UnderscoreStringBuilder underscoreBuilder, Integer appended) {
+                underscoreBuilder.__(Math.abs(appended));
             }
         });
 

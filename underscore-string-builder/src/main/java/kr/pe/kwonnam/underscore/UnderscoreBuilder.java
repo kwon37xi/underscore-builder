@@ -1,17 +1,21 @@
 package kr.pe.kwonnam.underscore;
 
+/**
+ *
+ * @param <B> Builder Class Type
+ */
 public interface UnderscoreBuilder<B extends UnderscoreBuilder<B>> extends CharSequence {
-    UnderscoreBuilder<B> __(Object appendee);
+    <A> UnderscoreBuilder<B> __(A appendee);
 
-    UnderscoreBuilder<B> __(Object appendee, UnderscoreFilter<B> filter);
+    <A> UnderscoreBuilder<B> __(A appendee, UnderscoreFilter<B, A> filter);
 
-    UnderscoreBuilder<B> __(boolean appendable, Object appendee);
+    <A> UnderscoreBuilder<B> __(boolean appendable, A appendee);
 
-    UnderscoreBuilder<B> __(boolean appendable, Object appendee, UnderscoreFilter<B> filter);
+    <A> UnderscoreBuilder<B> __(boolean appendable, A appendee, UnderscoreFilter<B, A> filter);
 
-    UnderscoreBuilder<B> __(UnderscorePredicate underscorePredicate, Object appendee);
+    <A> UnderscoreBuilder<B> __(UnderscorePredicate underscorePredicate, A appendee);
 
-    UnderscoreBuilder<B> __(UnderscorePredicate underscorePredicate, Object appendee, UnderscoreFilter<B> filter);
+    <A> UnderscoreBuilder<B> __(UnderscorePredicate underscorePredicate, A appendee, UnderscoreFilter<B, A> filter);
 
     UnderscoreBuilder<B> __(boolean appendable, UnderscoreSubBuild underscoreSubBuild);
 

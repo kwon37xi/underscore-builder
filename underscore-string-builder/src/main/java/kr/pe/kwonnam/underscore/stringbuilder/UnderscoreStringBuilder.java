@@ -19,23 +19,24 @@ public class UnderscoreStringBuilder implements UnderscoreBuilder<UnderscoreStri
         this.stringBuilder = stringBuilder;
     }
 
+
     @Override
-    public UnderscoreStringBuilder __(Object appendee) {
+    public <A> UnderscoreStringBuilder __(A appendee) {
         return __(true, appendee);
     }
 
     @Override
-    public UnderscoreStringBuilder __(boolean appendable, Object appendee) {
+    public <A> UnderscoreStringBuilder __(boolean appendable, A appendee) {
         return __(appendable, appendee, null);
     }
 
     @Override
-    public UnderscoreStringBuilder __(Object appendee, UnderscoreFilter<UnderscoreStringBuilder> filter) {
+    public <A> UnderscoreStringBuilder __(A appendee, UnderscoreFilter<UnderscoreStringBuilder, A> filter) {
         return __(true, appendee, filter);
     }
 
     @Override
-    public UnderscoreStringBuilder __(boolean appendable, Object appendee, UnderscoreFilter<UnderscoreStringBuilder> filter) {
+    public <A> UnderscoreStringBuilder __(boolean appendable, A appendee, UnderscoreFilter<UnderscoreStringBuilder, A> filter) {
         if (!appendable) {
             return this;
         }
@@ -50,12 +51,12 @@ public class UnderscoreStringBuilder implements UnderscoreBuilder<UnderscoreStri
     }
 
     @Override
-    public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, Object appendee) {
+    public <A> UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, A appendee) {
         return __(underscorePredicate, appendee, null);
     }
 
     @Override
-    public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, Object appendee, UnderscoreFilter<UnderscoreStringBuilder> filter) {
+    public <A> UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, A appendee, UnderscoreFilter<UnderscoreStringBuilder, A> filter) {
         if (underscorePredicate == null) {
             throw new IllegalArgumentException("underscorePredicate must not be null.");
         }
@@ -91,4 +92,5 @@ public class UnderscoreStringBuilder implements UnderscoreBuilder<UnderscoreStri
     public String toString() {
         return stringBuilder.toString();
     }
+
 }
