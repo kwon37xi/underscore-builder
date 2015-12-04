@@ -68,14 +68,4 @@ public abstract class AbstractUnderscoreBuilder<T extends UnderscoreBuilder<T>> 
         }
         return __(underscorePredicate.evaluate(), underscoreSubBuild);
     }
-
-    @Override
-    public UnderscoreBuilder append(CharSequence csq) throws IOException {
-        return __(csq);
-    }
-
-    @Override
-    public UnderscoreBuilder append(char c) throws IOException {
-        return __(c);
-    }
 }

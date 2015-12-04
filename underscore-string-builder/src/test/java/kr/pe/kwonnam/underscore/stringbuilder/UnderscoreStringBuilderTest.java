@@ -140,10 +140,4 @@ public class UnderscoreStringBuilderTest {
                 ex.getMessage(), CoreMatchers.is("underscorePredicate must not be null."));
         }
     }
-
-    @Test
-    public void append() throws Exception {
-        underscoreStringBuilder.append("Hello");
-        assertThat(underscoreStringBuilder.toString(), is("Hello"));
-    }
 }

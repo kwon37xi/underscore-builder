@@ -114,23 +114,6 @@ public class UnderscoreStringBuilder extends AbstractUnderscoreBuilder<Underscor
     }
 
     @Override
-    public UnderscoreStringBuilder append(CharSequence csq) throws IOException {
-        super.append(csq);
-        return this;
-    }
-
-    @Override
-    public UnderscoreStringBuilder append(char c) throws IOException {
-        super.append(c);
-        return this;
-    }
-
-    @Override
-    public Appendable append(CharSequence csq, int start, int end) throws IOException {
-        return null;
-    }
-
-    @Override
     public int length() {
         return 0;
     }

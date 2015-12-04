@@ -1,6 +1,6 @@
 package kr.pe.kwonnam.underscore;
 
-public interface UnderscoreBuilder<T extends UnderscoreBuilder<T>> extends Appendable, CharSequence {
+public interface UnderscoreBuilder<T extends UnderscoreBuilder<T>> extends CharSequence {
     UnderscoreBuilder __(Object appendee);
 
     UnderscoreBuilder __(Object appendee, UnderscoreFilter<T> filter);
