@@ -65,47 +65,10 @@ public class UnderscoreStringBuilder extends AbstractUnderscoreBuilder<Underscor
         return this;
     }
 
-
-    @Override
-    public UnderscoreStringBuilder __(String appendee) {
-        super.__(appendee);
-        return this;
-    }
-
-    @Override
-    public UnderscoreStringBuilder __(boolean appendable, String appendee) {
-        super.__(appendable, appendee);
-        return this;
-    }
-
-    @Override
-    public UnderscoreStringBuilder __(String appendee, UnderscoreFilter<UnderscoreStringBuilder> filter) {
-        super.__(appendee, filter);
-        return this;
-    }
-
-    @Override
-    public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, String appendee) {
-        super.__(underscorePredicate, appendee);
-        return this;
-    }
-
-    @Override
-    public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, String appendee, UnderscoreFilter<UnderscoreStringBuilder> filter) {
-        super.__(underscorePredicate, appendee, filter);
-        return this;
-    }
-
     @Override
     public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, UnderscoreSubBuild underscoreSubBuild) {
         super.__(underscorePredicate, underscoreSubBuild);
         return this;
-    }
-
-    @Override
-    public UnderscoreStringBuilder __(boolean appendable, String appendee, UnderscoreFilter<UnderscoreStringBuilder> filter) {
-        stringBuilder.append(appendee);
-        return null;
     }
 
     @Override

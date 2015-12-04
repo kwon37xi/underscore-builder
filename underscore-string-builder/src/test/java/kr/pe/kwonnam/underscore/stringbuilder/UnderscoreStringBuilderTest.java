@@ -29,17 +29,18 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_Object() throws Exception {
-        underscoreStringBuilder.__("Hello~")
+    public void __() throws Exception {
+        underscoreStringBuilder
+            .__("hello! ")
             .__(1)
             .__(true)
             .__(10.99);
 
-        assertThat(underscoreStringBuilder.toString(), is("Hello~1true10.99"));
+        assertThat(underscoreStringBuilder.toString(), is("hello! 1true10.99"));
     }
 
     @Test
-    public void __and_Objec_filter() throws Exception {
+    public void __and_filter() throws Exception {
         underscoreStringBuilder.__(123, new UnderscoreFilter<UnderscoreStringBuilder>() {
             @Override
             public void filter(UnderscoreStringBuilder underscoreBuilder, Object appended) {
@@ -52,21 +53,21 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_appendable_false_and_object() throws Exception {
+    public void __and_appendable_false() throws Exception {
         underscoreStringBuilder.__(false, 123);
 
         assertThat(underscoreStringBuilder.toString(), isEmptyString());
     }
 
     @Test
-    public void __and_appendable_true_and_object() throws Exception {
+    public void __and_appendable_true() throws Exception {
         underscoreStringBuilder.__(true, 123.456);
 
         assertThat(underscoreStringBuilder.toString(), is("123.456"));
     }
 
     @Test
-    public void __and_appendable_false_and_object_and_filter() throws Exception {
+    public void __and_appendable_false_and_filter() throws Exception {
         underscoreStringBuilder.__(false, new Date(), new UnderscoreFilter<UnderscoreStringBuilder>() {
             @Override
             public void filter(UnderscoreStringBuilder underscoreBuilder, Object appended) {
@@ -78,7 +79,7 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_appendable_true_and_object_and_filter() throws Exception {
+    public void __and_appendable_true_and_filter() throws Exception {
         underscoreStringBuilder.__(true, new Date(), new UnderscoreFilter<UnderscoreStringBuilder>() {
             @Override
             public void filter(UnderscoreStringBuilder underscoreBuilder, Object appended) {
@@ -90,7 +91,7 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_predicate_false_and_object() throws Exception {
+    public void __and_predicate_false() throws Exception {
         underscoreStringBuilder.__(new UnderscorePredicate() {
             @Override
             public boolean evaluate() {
@@ -102,7 +103,7 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_predicate_true_and_object() throws Exception {
+    public void __and_predicate_true() throws Exception {
         underscoreStringBuilder.__(new UnderscorePredicate() {
             @Override
             public boolean evaluate() {
@@ -114,7 +115,7 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_predicate_true_and_object_and_filter() throws Exception {
+    public void __and_predicate_true_and_filter() throws Exception {
         underscoreStringBuilder.__(new UnderscorePredicate() {
             @Override
             public boolean evaluate() {
@@ -131,7 +132,7 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_predicate_null_and_object_and_filter_null() throws Exception {
+    public void __and_predicate_null_and_filter_null() throws Exception {
         try {
             underscoreStringBuilder.__(null, 123, null);
             fail("Must throw an exception - IllegalArgumentException");
