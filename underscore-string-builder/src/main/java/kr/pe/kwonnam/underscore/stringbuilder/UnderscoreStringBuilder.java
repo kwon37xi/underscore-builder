@@ -9,7 +9,7 @@ import java.util.Map;
  * UnderscoreStringBuilder builds string.
  *
  */
-public class UnderscoreStringBuilder extends AbstractUnderscoreBuilder {
+public class UnderscoreStringBuilder extends AbstractUnderscoreBuilder<UnderscoreStringBuilder> {
     private StringBuilder stringBuilder;
 
     public UnderscoreStringBuilder() {
@@ -33,61 +33,13 @@ public class UnderscoreStringBuilder extends AbstractUnderscoreBuilder {
     }
 
     @Override
-    public UnderscoreStringBuilder __(Object appendee, UnderscoreFilter filter) {
+    public UnderscoreStringBuilder __(Object appendee, UnderscoreFilter<UnderscoreStringBuilder> filter) {
         super.__(appendee, filter);
         return this;
     }
 
     @Override
-    public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, Object appendee) {
-        super.__(underscorePredicate, appendee);
-        return this;
-    }
-
-    @Override
-    public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, Object appendee, UnderscoreFilter filter) {
-        super.__(underscorePredicate, appendee, filter);
-        return this;
-    }
-
-    @Override
-    public UnderscoreStringBuilder __(String appendee) {
-        super.__(appendee);
-        return this;
-    }
-
-    @Override
-    public UnderscoreStringBuilder __(boolean appendable, String appendee) {
-        super.__(appendable, appendee);
-        return this;
-    }
-
-    @Override
-    public UnderscoreStringBuilder __(String appendee, UnderscoreFilter filter) {
-        super.__(appendee, filter);
-        return this;
-    }
-
-    @Override
-    public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, String appendee) {
-        super.__(underscorePredicate, appendee);
-        return this;
-    }
-
-    @Override
-    public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, String appendee, UnderscoreFilter filter) {
-        super.__(underscorePredicate, appendee, filter);
-        return this;
-    }
-
-    @Override
-    public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, UnderscoreSubBuild underscoreSubBuild) {
-        super.__(underscorePredicate, underscoreSubBuild);
-        return this;
-    }
-
-    @Override
-    public UnderscoreStringBuilder __(boolean appendable, Object appendee, UnderscoreFilter filter) {
+    public UnderscoreStringBuilder __(boolean appendable, Object appendee, UnderscoreFilter<UnderscoreStringBuilder> filter) {
         if (!appendable) {
             return this;
         }
@@ -102,7 +54,56 @@ public class UnderscoreStringBuilder extends AbstractUnderscoreBuilder {
     }
 
     @Override
-    public UnderscoreStringBuilder __(boolean appendable, String appendee, UnderscoreFilter filter) {
+    public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, Object appendee) {
+        super.__(underscorePredicate, appendee);
+        return this;
+    }
+
+    @Override
+    public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, Object appendee, UnderscoreFilter<UnderscoreStringBuilder> filter) {
+        super.__(underscorePredicate, appendee, filter);
+        return this;
+    }
+
+
+    @Override
+    public UnderscoreStringBuilder __(String appendee) {
+        super.__(appendee);
+        return this;
+    }
+
+    @Override
+    public UnderscoreStringBuilder __(boolean appendable, String appendee) {
+        super.__(appendable, appendee);
+        return this;
+    }
+
+    @Override
+    public UnderscoreStringBuilder __(String appendee, UnderscoreFilter<UnderscoreStringBuilder> filter) {
+        super.__(appendee, filter);
+        return this;
+    }
+
+    @Override
+    public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, String appendee) {
+        super.__(underscorePredicate, appendee);
+        return this;
+    }
+
+    @Override
+    public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, String appendee, UnderscoreFilter<UnderscoreStringBuilder> filter) {
+        super.__(underscorePredicate, appendee, filter);
+        return this;
+    }
+
+    @Override
+    public UnderscoreStringBuilder __(UnderscorePredicate underscorePredicate, UnderscoreSubBuild underscoreSubBuild) {
+        super.__(underscorePredicate, underscoreSubBuild);
+        return this;
+    }
+
+    @Override
+    public UnderscoreStringBuilder __(boolean appendable, String appendee, UnderscoreFilter<UnderscoreStringBuilder> filter) {
         stringBuilder.append(appendee);
         return null;
     }

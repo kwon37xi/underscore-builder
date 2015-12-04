@@ -2,6 +2,8 @@ package kr.pe.kwonnam.underscore.stringbuilder;
 
 import kr.pe.kwonnam.underscore.UnderscoreBuilder;
 import kr.pe.kwonnam.underscore.UnderscoreFilter;
+import kr.pe.kwonnam.underscore.UnderscorePredicate;
+import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -38,9 +40,9 @@ public class UnderscoreStringBuilderTest {
 
     @Test
     public void __and_Objec_filter() throws Exception {
-        underscoreStringBuilder.__(123, new UnderscoreFilter() {
+        underscoreStringBuilder.__(123, new UnderscoreFilter<UnderscoreStringBuilder>() {
             @Override
-            public void filter(UnderscoreBuilder underscoreBuilder, Object appended) {
+            public void filter(UnderscoreStringBuilder underscoreBuilder, Object appended) {
                 int i = ((Integer) appended) * 2;
                 underscoreBuilder.__(i);
             }
@@ -65,9 +67,9 @@ public class UnderscoreStringBuilderTest {
 
     @Test
     public void __and_appendable_false_and_object_and_filter() throws Exception {
-        underscoreStringBuilder.__(false, new Date(), new UnderscoreFilter() {
+        underscoreStringBuilder.__(false, new Date(), new UnderscoreFilter<UnderscoreStringBuilder>() {
             @Override
-            public void filter(UnderscoreBuilder underscoreBuilder, Object appended) {
+            public void filter(UnderscoreStringBuilder underscoreBuilder, Object appended) {
                 underscoreBuilder.__(appended);
             }
         });
@@ -77,14 +79,66 @@ public class UnderscoreStringBuilderTest {
 
     @Test
     public void __and_appendable_true_and_object_and_filter() throws Exception {
-        underscoreStringBuilder.__(true, new Date(), new UnderscoreFilter() {
+        underscoreStringBuilder.__(true, new Date(), new UnderscoreFilter<UnderscoreStringBuilder>() {
             @Override
-            public void filter(UnderscoreBuilder underscoreBuilder, Object appended) {
+            public void filter(UnderscoreStringBuilder underscoreBuilder, Object appended) {
                 underscoreBuilder.__(appended);
             }
         });
 
         assertThat(underscoreStringBuilder.toString(), not(isEmptyString()));
+    }
+
+    @Test
+    public void __and_predicate_false_and_object() throws Exception {
+        underscoreStringBuilder.__(new UnderscorePredicate() {
+            @Override
+            public boolean evaluate() {
+                return false;
+            }
+        }, 123456.789);
+
+        assertThat(underscoreStringBuilder.toString(), isEmptyString());
+    }
+
+    @Test
+    public void __and_predicate_true_and_object() throws Exception {
+        underscoreStringBuilder.__(new UnderscorePredicate() {
+            @Override
+            public boolean evaluate() {
+                return true;
+            }
+        }, 123456.789);
+
+        assertThat(underscoreStringBuilder.toString(), is("123456.789"));
+    }
+
+    @Test
+    public void __and_predicate_true_and_object_and_filter() throws Exception {
+        underscoreStringBuilder.__(new UnderscorePredicate() {
+            @Override
+            public boolean evaluate() {
+                return true;
+            }
+        }, -123, new UnderscoreFilter<UnderscoreStringBuilder>() {
+            @Override
+            public void filter(UnderscoreStringBuilder underscoreBuilder, Object appended) {
+                underscoreBuilder.__(Math.abs((Integer)appended));
+            }
+        });
+
+        assertThat(underscoreStringBuilder.toString(), is("123"));
+    }
+
+    @Test
+    public void __and_predicate_null_and_object_and_filter_null() throws Exception {
+        try {
+            underscoreStringBuilder.__(null, 123, null);
+            fail("Must throw an exception - IllegalArgumentException");
+        } catch (IllegalArgumentException ex) {
+            assertThat("Must throw an exception",
+                ex.getMessage(), CoreMatchers.is("underscorePredicate must not be null."));
+        }
     }
 
     @Test

@@ -2,7 +2,7 @@ package kr.pe.kwonnam.underscore;
 
 import java.io.IOException;
 
-public abstract class AbstractUnderscoreBuilder implements UnderscoreBuilder {
+public abstract class AbstractUnderscoreBuilder<T extends UnderscoreBuilder<T>> implements UnderscoreBuilder<T> {
 
     @Override
     public UnderscoreBuilder __(Object appendee) {
@@ -10,7 +10,7 @@ public abstract class AbstractUnderscoreBuilder implements UnderscoreBuilder {
     }
 
     @Override
-    public UnderscoreBuilder __(Object appendee, UnderscoreFilter filter) {
+    public UnderscoreBuilder __(Object appendee, UnderscoreFilter<T> filter) {
         return __(true, appendee, filter);
     }
 
@@ -25,12 +25,12 @@ public abstract class AbstractUnderscoreBuilder implements UnderscoreBuilder {
     }
 
     @Override
-    public UnderscoreBuilder __(UnderscorePredicate underscorePredicate, Object appendee, UnderscoreFilter filter) {
+    public UnderscoreBuilder __(UnderscorePredicate underscorePredicate, Object appendee, UnderscoreFilter<T> filter) {
         if (underscorePredicate == null) {
             throw new IllegalArgumentException("underscorePredicate must not be null.");
         }
 
-        return __(underscorePredicate.evaluate(this), appendee, filter);
+        return __(underscorePredicate.evaluate(), appendee, filter);
     }
 
     @Override
@@ -44,7 +44,7 @@ public abstract class AbstractUnderscoreBuilder implements UnderscoreBuilder {
     }
 
     @Override
-    public UnderscoreBuilder __(String appendee, UnderscoreFilter filter) {
+    public UnderscoreBuilder __(String appendee, UnderscoreFilter<T> filter) {
         return __(true, appendee, filter);
     }
 
@@ -54,11 +54,11 @@ public abstract class AbstractUnderscoreBuilder implements UnderscoreBuilder {
     }
 
     @Override
-    public UnderscoreBuilder __(UnderscorePredicate underscorePredicate, String appendee, UnderscoreFilter filter) {
+    public UnderscoreBuilder __(UnderscorePredicate underscorePredicate, String appendee, UnderscoreFilter<T> filter) {
         if (underscorePredicate == null) {
             throw new IllegalArgumentException("underscorePredicate must not be null.");
         }
-        return __(underscorePredicate.evaluate(this), appendee, filter);
+        return __(underscorePredicate.evaluate(), appendee, filter);
     }
 
     @Override
@@ -66,7 +66,7 @@ public abstract class AbstractUnderscoreBuilder implements UnderscoreBuilder {
         if (underscorePredicate == null) {
             throw new IllegalArgumentException("underscorePredicate must not be null.");
         }
-        return __(underscorePredicate.evaluate(this), underscoreSubBuild);
+        return __(underscorePredicate.evaluate(), underscoreSubBuild);
     }
 
     @Override

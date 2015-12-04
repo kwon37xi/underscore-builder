@@ -1,5 +1,5 @@
 package kr.pe.kwonnam.underscore;
 
-public interface UnderscoreFilter {
-    void filter(UnderscoreBuilder underscoreBuilder, Object appended);
+public interface UnderscoreFilter<T extends UnderscoreBuilder>  {
+    void filter(T underscoreBuilder, Object appended);
 }
