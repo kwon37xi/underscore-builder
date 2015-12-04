@@ -1,12 +1,19 @@
 package kr.pe.kwonnam.underscore.stringbuilder;
 
+import kr.pe.kwonnam.underscore.UnderscoreBuilder;
+import kr.pe.kwonnam.underscore.UnderscoreFilter;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.util.Date;
+
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isEmptyString;
+import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.*;
 
 public class UnderscoreStringBuilderTest {
@@ -17,6 +24,67 @@ public class UnderscoreStringBuilderTest {
     @Before
     public void setUp() throws Exception {
         underscoreStringBuilder = new UnderscoreStringBuilder();
+    }
+
+    @Test
+    public void __and_Object() throws Exception {
+        underscoreStringBuilder.__("Hello~")
+            .__(1)
+            .__(true)
+            .__(10.99);
+
+        assertThat(underscoreStringBuilder.toString(), is("Hello~1true10.99"));
+    }
+
+    @Test
+    public void __and_Objec_filter() throws Exception {
+        underscoreStringBuilder.__(123, new UnderscoreFilter() {
+            @Override
+            public void filter(UnderscoreBuilder underscoreBuilder, Object appended) {
+                int i = ((Integer) appended) * 2;
+                underscoreBuilder.__(i);
+            }
+        });
+
+        assertThat(underscoreStringBuilder.toString(), is("246"));
+    }
+
+    @Test
+    public void __and_appendable_false_and_object() throws Exception {
+        underscoreStringBuilder.__(false, 123);
+
+        assertThat(underscoreStringBuilder.toString(), isEmptyString());
+    }
+
+    @Test
+    public void __and_appendable_true_and_object() throws Exception {
+        underscoreStringBuilder.__(true, 123.456);
+
+        assertThat(underscoreStringBuilder.toString(), is("123.456"));
+    }
+
+    @Test
+    public void __and_appendable_false_and_object_and_filter() throws Exception {
+        underscoreStringBuilder.__(false, new Date(), new UnderscoreFilter() {
+            @Override
+            public void filter(UnderscoreBuilder underscoreBuilder, Object appended) {
+                underscoreBuilder.__(appended);
+            }
+        });
+
+        assertThat(underscoreStringBuilder.toString(), isEmptyString());
+    }
+
+    @Test
+    public void __and_appendable_true_and_object_and_filter() throws Exception {
+        underscoreStringBuilder.__(true, new Date(), new UnderscoreFilter() {
+            @Override
+            public void filter(UnderscoreBuilder underscoreBuilder, Object appended) {
+                underscoreBuilder.__(appended);
+            }
+        });
+
+        assertThat(underscoreStringBuilder.toString(), not(isEmptyString()));
     }
 
     @Test

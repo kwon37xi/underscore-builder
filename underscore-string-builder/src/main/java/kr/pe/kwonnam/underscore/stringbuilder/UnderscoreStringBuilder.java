@@ -27,14 +27,14 @@ public class UnderscoreStringBuilder extends AbstractUnderscoreBuilder {
     }
 
     @Override
-    public UnderscoreStringBuilder __(Object appendee, UnderscoreFilter filter) {
-        super.__(appendee, filter);
+    public UnderscoreStringBuilder __(boolean appendable, Object appendee) {
+        super.__(appendable, appendee);
         return this;
     }
 
     @Override
-    public UnderscoreStringBuilder __(boolean appendable, Object appendee) {
-        super.__(appendable, appendee);
+    public UnderscoreStringBuilder __(Object appendee, UnderscoreFilter filter) {
+        super.__(appendee, filter);
         return this;
     }
 
@@ -88,12 +88,22 @@ public class UnderscoreStringBuilder extends AbstractUnderscoreBuilder {
 
     @Override
     public UnderscoreStringBuilder __(boolean appendable, Object appendee, UnderscoreFilter filter) {
+        if (!appendable) {
+            return this;
+        }
+
+        if (filter != null) {
+            filter.filter(this, appendee);
+            return this;
+        }
+
         stringBuilder.append(appendee);
-        return null;
+        return this;
     }
 
     @Override
     public UnderscoreStringBuilder __(boolean appendable, String appendee, UnderscoreFilter filter) {
+        stringBuilder.append(appendee);
         return null;
     }
 
