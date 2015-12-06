@@ -1,5 +1,5 @@
 package kr.pe.kwonnam.underscore;
 
-public interface UnderscoreSubBuild {
-    <T extends UnderscoreBuilder>void subbuild(T underscoreBuilder);
+public interface UnderscoreSubBuild<B extends UnderscoreBuilder>  {
+    void subbuild(B underscoreSubBuilder);
 }

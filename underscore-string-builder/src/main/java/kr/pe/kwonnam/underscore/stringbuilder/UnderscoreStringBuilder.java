@@ -16,7 +16,6 @@ public class UnderscoreStringBuilder implements UnderscoreBuilder<UnderscoreStri
         this.stringBuilder = stringBuilder;
     }
 
-
     @Override
     public <A> UnderscoreStringBuilder __(A appendee) {
         return __(true, appendee);
@@ -61,13 +60,44 @@ public class UnderscoreStringBuilder implements UnderscoreBuilder<UnderscoreStri
     }
 
     @Override
-    public UnderscoreStringBuilder __(UnderscorePredicate predicate, UnderscoreSubBuild subBuild) {
-        return __(predicate.evaluate(), subBuild);
+    public UnderscoreStringBuilder __(boolean appendable, UnderscoreSubBuild<UnderscoreStringBuilder> subBuild) {
+        return __(appendable, subBuild, (UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder>) null);
+    }
+    @Override
+    public UnderscoreStringBuilder __(boolean appendable, UnderscoreSubBuild<UnderscoreStringBuilder> subBuild,
+                                      UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder> transformer) {
+        if (!appendable) {
+            return this;
+        }
+
+        if (subBuild == null) {
+            throw new IllegalArgumentException("subBuild must not be null.");
+        }
+
+        UnderscoreStringBuilder subBuilder = new UnderscoreStringBuilder();
+        subBuild.subbuild(subBuilder);
+
+        if (transformer != null) {
+            transformer.transform(this, subBuilder);
+            return this;
+        }
+
+        __(subBuilder.toString());
+        return this;
     }
 
     @Override
-    public UnderscoreStringBuilder __(boolean appendable, UnderscoreSubBuild subBuild) {
-        return null;
+    public UnderscoreStringBuilder __(UnderscorePredicate predicate, UnderscoreSubBuild<UnderscoreStringBuilder> subBuild) {
+        return __(predicate, subBuild, (UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder>) null);
+    }
+
+    @Override
+    public UnderscoreStringBuilder __(UnderscorePredicate predicate, UnderscoreSubBuild<UnderscoreStringBuilder> subBuild,
+                                      UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder> transformer) {
+        if (predicate == null) {
+            throw new IllegalArgumentException("underscorePredicate must not be null.");
+        }
+        return __(predicate.evaluate(), subBuild, transformer);
     }
 
     /**

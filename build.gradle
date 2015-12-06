@@ -7,14 +7,15 @@ ext {
     assertjVersion = '2.2.0'
 }
 
-project.version = '0.3-SNAPSHOT'
-project.group = 'kr.pe.kwonnam.underscorebuilder'
 
 subprojects {
     apply plugin: 'java'
     apply plugin: 'jacoco'
     apply plugin: 'maven'
     apply plugin: 'signing'
+
+    project.version = '0.1-SNAPSHOT'
+    project.group = 'kr.pe.kwonnam.underscorebuilder'
 
     repositories {
         mavenCentral()
