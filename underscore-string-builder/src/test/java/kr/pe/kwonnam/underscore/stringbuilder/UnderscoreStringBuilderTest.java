@@ -1,9 +1,8 @@
 package kr.pe.kwonnam.underscore.stringbuilder;
 
-import kr.pe.kwonnam.underscore.UnderscoreFilter;
 import kr.pe.kwonnam.underscore.UnderscorePredicate;
+import kr.pe.kwonnam.underscore.UnderscoreTransformer;
 import org.hamcrest.CoreMatchers;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -37,10 +36,10 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_filter() throws Exception {
-        underscoreStringBuilder.__(123, new UnderscoreFilter<UnderscoreStringBuilder, Integer>() {
+    public void __and_transformer() throws Exception {
+        underscoreStringBuilder.__(123, new UnderscoreTransformer<UnderscoreStringBuilder, Integer>() {
             @Override
-            public void filter(UnderscoreStringBuilder underscoreBuilder, Integer appended) {
+            public void transform(UnderscoreStringBuilder underscoreBuilder, Integer appended) {
                 int i = appended * 2;
                 underscoreBuilder.__(i);
             }
@@ -64,10 +63,10 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_appendable_false_and_filter() throws Exception {
-        underscoreStringBuilder.__(false, new Date(), new UnderscoreFilter<UnderscoreStringBuilder, Date>() {
+    public void __and_appendable_false_and_transformer() throws Exception {
+        underscoreStringBuilder.__(false, new Date(), new UnderscoreTransformer<UnderscoreStringBuilder, Date>() {
             @Override
-            public void filter(UnderscoreStringBuilder underscoreBuilder, Date appended) {
+            public void transform(UnderscoreStringBuilder underscoreBuilder, Date appended) {
                 underscoreBuilder.__(appended);
             }
         });
@@ -76,10 +75,10 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_appendable_true_and_filter() throws Exception {
-        underscoreStringBuilder.__(true, new Date(), new UnderscoreFilter<UnderscoreStringBuilder, Date>() {
+    public void __and_appendable_true_and_transformer() throws Exception {
+        underscoreStringBuilder.__(true, new Date(), new UnderscoreTransformer<UnderscoreStringBuilder, Date>() {
             @Override
-            public void filter(UnderscoreStringBuilder underscoreBuilder, Date appended) {
+            public void transform(UnderscoreStringBuilder underscoreBuilder, Date appended) {
                 underscoreBuilder.__(appended);
             }
         });
@@ -112,15 +111,15 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_predicate_true_and_filter() throws Exception {
+    public void __and_predicate_true_and_transformer() throws Exception {
         underscoreStringBuilder.__(new UnderscorePredicate() {
             @Override
             public boolean evaluate() {
                 return true;
             }
-        }, -123, new UnderscoreFilter<UnderscoreStringBuilder, Integer>() {
+        }, -123, new UnderscoreTransformer<UnderscoreStringBuilder, Integer>() {
             @Override
-            public void filter(UnderscoreStringBuilder underscoreBuilder, Integer appended) {
+            public void transform(UnderscoreStringBuilder underscoreBuilder, Integer appended) {
                 underscoreBuilder.__(Math.abs(appended));
             }
         });
@@ -129,7 +128,7 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_predicate_null_and_filter_null() throws Exception {
+    public void __and_predicate_null_and_transformer_null() throws Exception {
         try {
             underscoreStringBuilder.__(null, 123, null);
             fail("Must throw an exception - IllegalArgumentException");
