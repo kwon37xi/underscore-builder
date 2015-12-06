@@ -60,9 +60,20 @@ public class UnderscoreStringBuilder implements UnderscoreBuilder<UnderscoreStri
     }
 
     @Override
+    public UnderscoreBuilder<UnderscoreStringBuilder> __(UnderscoreSubBuild<UnderscoreStringBuilder> subBuild) {
+        return __(true, subBuild);
+    }
+
+    @Override
+    public UnderscoreBuilder<UnderscoreStringBuilder> __(UnderscoreSubBuild<UnderscoreStringBuilder> subBuild, UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder> transformer) {
+        return __(true, subBuild, transformer);
+    }
+
+    @Override
     public UnderscoreStringBuilder __(boolean appendable, UnderscoreSubBuild<UnderscoreStringBuilder> subBuild) {
         return __(appendable, subBuild, (UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder>) null);
     }
+
     @Override
     public UnderscoreStringBuilder __(boolean appendable, UnderscoreSubBuild<UnderscoreStringBuilder> subBuild,
                                       UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder> transformer) {

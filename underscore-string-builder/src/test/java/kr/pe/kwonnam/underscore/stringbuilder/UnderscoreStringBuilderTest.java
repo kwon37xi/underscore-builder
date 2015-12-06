@@ -140,6 +140,44 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
+    public void __and_subBuild() throws Exception {
+        underscoreStringBuilder
+            .__("-")
+            .__(new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+                @Override
+                public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                    underscoreSubBuilder.__("*");
+                }
+            })
+            .__("-");
+
+        assertThat(underscoreStringBuilder.toString(), is("-*-"));
+    }
+
+    @Test
+    public void __and_subBuild_and_transformer() throws Exception {
+        underscoreStringBuilder
+            .__("-")
+            .__(new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+                @Override
+                public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                    underscoreSubBuilder.__("*");
+                }
+            }, new UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder>() {
+                @Override
+                public void transform(UnderscoreStringBuilder underscoreBuilder, UnderscoreStringBuilder appended) {
+                    for (int i = 0; i < 5; i++) {
+                        underscoreBuilder.__(appended.toString());
+                    }
+                }
+            })
+            .__("-");
+
+        assertThat(underscoreStringBuilder.toString(), is("-*****-"));
+    }
+
+
+    @Test
     public void __and_appendable_false_and_subBuild() throws Exception {
         underscoreStringBuilder
             .__("[")
