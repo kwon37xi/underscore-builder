@@ -60,23 +60,23 @@ public class UnderscoreStringBuilder implements UnderscoreBuilder<UnderscoreStri
     }
 
     @Override
-    public UnderscoreBuilder<UnderscoreStringBuilder> __(UnderscoreSubBuild<UnderscoreStringBuilder> subBuild) {
-        return __(true, subBuild);
+    public UnderscoreBuilder<UnderscoreStringBuilder> sub(UnderscoreSubBuild<UnderscoreStringBuilder> subBuild) {
+        return sub(true, subBuild);
     }
 
     @Override
-    public UnderscoreBuilder<UnderscoreStringBuilder> __(UnderscoreSubBuild<UnderscoreStringBuilder> subBuild, UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder> transformer) {
-        return __(true, subBuild, transformer);
+    public UnderscoreBuilder<UnderscoreStringBuilder> sub(UnderscoreSubBuild<UnderscoreStringBuilder> subBuild, UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder> transformer) {
+        return sub(true, subBuild, transformer);
     }
 
     @Override
-    public UnderscoreStringBuilder __(boolean appendable, UnderscoreSubBuild<UnderscoreStringBuilder> subBuild) {
-        return __(appendable, subBuild, (UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder>) null);
+    public UnderscoreStringBuilder sub(boolean appendable, UnderscoreSubBuild<UnderscoreStringBuilder> subBuild) {
+        return sub(appendable, subBuild, null);
     }
 
     @Override
-    public UnderscoreStringBuilder __(boolean appendable, UnderscoreSubBuild<UnderscoreStringBuilder> subBuild,
-                                      UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder> transformer) {
+    public UnderscoreStringBuilder sub(boolean appendable, UnderscoreSubBuild<UnderscoreStringBuilder> subBuild,
+                                       UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder> transformer) {
         if (!appendable) {
             return this;
         }
@@ -98,17 +98,17 @@ public class UnderscoreStringBuilder implements UnderscoreBuilder<UnderscoreStri
     }
 
     @Override
-    public UnderscoreStringBuilder __(UnderscorePredicate predicate, UnderscoreSubBuild<UnderscoreStringBuilder> subBuild) {
-        return __(predicate, subBuild, (UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder>) null);
+    public UnderscoreStringBuilder sub(UnderscorePredicate predicate, UnderscoreSubBuild<UnderscoreStringBuilder> subBuild) {
+        return sub(predicate, subBuild, null);
     }
 
     @Override
-    public UnderscoreStringBuilder __(UnderscorePredicate predicate, UnderscoreSubBuild<UnderscoreStringBuilder> subBuild,
-                                      UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder> transformer) {
+    public UnderscoreStringBuilder sub(UnderscorePredicate predicate, UnderscoreSubBuild<UnderscoreStringBuilder> subBuild,
+                                       UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder> transformer) {
         if (predicate == null) {
             throw new IllegalArgumentException("underscorePredicate must not be null.");
         }
-        return __(predicate.evaluate(), subBuild, transformer);
+        return sub(predicate.evaluate(), subBuild, transformer);
     }
 
     /**

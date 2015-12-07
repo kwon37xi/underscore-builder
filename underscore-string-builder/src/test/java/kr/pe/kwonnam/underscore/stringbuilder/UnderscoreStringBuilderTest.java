@@ -140,10 +140,10 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_subBuild() throws Exception {
+    public void sub() throws Exception {
         underscoreStringBuilder
             .__("-")
-            .__(new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+            .sub(new UnderscoreSubBuild<UnderscoreStringBuilder>() {
                 @Override
                 public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
                     underscoreSubBuilder.__("*");
@@ -155,10 +155,10 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_subBuild_and_transformer() throws Exception {
+    public void sub_and_transformer() throws Exception {
         underscoreStringBuilder
             .__("-")
-            .__(new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+            .sub(new UnderscoreSubBuild<UnderscoreStringBuilder>() {
                 @Override
                 public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
                     underscoreSubBuilder.__("*");
@@ -178,10 +178,10 @@ public class UnderscoreStringBuilderTest {
 
 
     @Test
-    public void __and_appendable_false_and_subBuild() throws Exception {
+    public void sub_and_appendable_false() throws Exception {
         underscoreStringBuilder
             .__("[")
-            .__(false, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+            .sub(false, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
                 @Override
                 public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
                     underscoreSubBuilder.__("Hello");
@@ -193,10 +193,10 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_appendable_true_and_subBuild() throws Exception {
+    public void sub_and_appendable_true() throws Exception {
         underscoreStringBuilder
             .__("[")
-            .__(true, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+            .sub(true, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
                 @Override
                 public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
                     underscoreSubBuilder
@@ -211,10 +211,10 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_appendable_false_and_subBuild_and_transformer() throws Exception {
+    public void sub_and_appendable_false_and_transformer() throws Exception {
         underscoreStringBuilder
             .__("(")
-            .__(false, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+            .sub(false, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
                 @Override
                 public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
                     underscoreSubBuilder.__("world!");
@@ -231,10 +231,10 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_appendable_true_and_subBuild_and_transformer() throws Exception {
+    public void sub_and_appendable_true_and_transformer() throws Exception {
         underscoreStringBuilder
             .__("(")
-            .__(true, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+            .sub(true, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
                 @Override
                 public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
                     underscoreSubBuilder.__("world!");
@@ -251,10 +251,10 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_appendable_true_and_subBuild_null() throws Exception {
+    public void sub_and_appendable_true_null() throws Exception {
         try {
             underscoreStringBuilder
-                .__(true, (UnderscoreSubBuild<UnderscoreStringBuilder>) null, (UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder>) null);
+                .sub(true, null, null);
             fail("Must throw an exception - IllegalArgumentException");
         } catch (IllegalArgumentException ex) {
             assertThat("Must throw an exception",
@@ -263,10 +263,10 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_predicate_false_and_subBuild() throws Exception {
+    public void sub_and_predicate_false() throws Exception {
         underscoreStringBuilder
             .__("{")
-            .__(new UnderscorePredicate() {
+            .sub(new UnderscorePredicate() {
                 @Override
                 public boolean evaluate() {
                     return false;
@@ -282,10 +282,10 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_predicate_true_and_subBuild() throws Exception {
+    public void sub_and_predicate_true() throws Exception {
         underscoreStringBuilder
             .__("{")
-            .__(new UnderscorePredicate() {
+            .sub(new UnderscorePredicate() {
                 @Override
                 public boolean evaluate() {
                     return true;
@@ -301,11 +301,11 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
-    public void __and_predicate_null_and_subBuild() throws Exception {
+    public void sub_and_predicate_null() throws Exception {
         try {
             underscoreStringBuilder
                 .__("{")
-                .__(null, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+                .sub(null, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
                     @Override
                     public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
                         underscoreSubBuilder.__("Hello");
