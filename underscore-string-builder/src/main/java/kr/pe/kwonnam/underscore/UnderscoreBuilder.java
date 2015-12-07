@@ -2,30 +2,29 @@ package kr.pe.kwonnam.underscore;
 
 /**
  *
- * @param <B> Builder Class Type
  */
-public interface UnderscoreBuilder<B extends UnderscoreBuilder<B>> extends CharSequence {
-    <A> UnderscoreBuilder<B> __(A appendee);
+public interface UnderscoreBuilder extends CharSequence, Appendable {
+    <A> UnderscoreBuilder __(A appendee);
 
-    <A> UnderscoreBuilder<B> __(A appendee, UnderscoreTransformer<B, A> transformer);
+    <A> UnderscoreBuilder __(A appendee, UnderscoreTransformer<A> transformer);
 
-    <A> UnderscoreBuilder<B> __(boolean appendable, A appendee);
+    <A> UnderscoreBuilder __(boolean appendable, A appendee);
 
-    <A> UnderscoreBuilder<B> __(boolean appendable, A appendee, UnderscoreTransformer<B, A> transformer);
+    <A> UnderscoreBuilder __(boolean appendable, A appendee, UnderscoreTransformer<A> transformer);
 
-    <A> UnderscoreBuilder<B> __(UnderscorePredicate predicate, A appendee);
+    <A> UnderscoreBuilder __(UnderscorePredicate predicate, A appendee);
 
-    <A> UnderscoreBuilder<B> __(UnderscorePredicate predicate, A appendee, UnderscoreTransformer<B, A> transformer);
+    <A> UnderscoreBuilder __(UnderscorePredicate predicate, A appendee, UnderscoreTransformer<A> transformer);
 
-    UnderscoreBuilder<B> sub(UnderscoreSubBuild<B> subBuild);
+    UnderscoreBuilder sub(UnderscoreSubBuild subBuild);
 
-    UnderscoreBuilder<B> sub(UnderscoreSubBuild<B> subBuild, UnderscoreTransformer<B, B> transformer);
+    UnderscoreBuilder sub(UnderscoreSubBuild subBuild, UnderscoreTransformer<UnderscoreBuilder> transformer);
 
-    UnderscoreBuilder<B> sub(boolean appendable, UnderscoreSubBuild<B> subBuild);
+    UnderscoreBuilder sub(boolean appendable, UnderscoreSubBuild subBuild);
 
-    UnderscoreBuilder<B> sub(boolean appendable, UnderscoreSubBuild<B> subBuild, UnderscoreTransformer<B, B> transformer);
+    UnderscoreBuilder sub(boolean appendable, UnderscoreSubBuild subBuild, UnderscoreTransformer<UnderscoreBuilder> transformer);
 
-    UnderscoreBuilder<B> sub(UnderscorePredicate predicate, UnderscoreSubBuild<B> subBuild);
+    UnderscoreBuilder sub(UnderscorePredicate predicate, UnderscoreSubBuild subBuild);
 
-    UnderscoreBuilder<B> sub(UnderscorePredicate predicate, UnderscoreSubBuild<B> subBuild, UnderscoreTransformer<B, B> transformer);
+    UnderscoreBuilder sub(UnderscorePredicate predicate, UnderscoreSubBuild subBuild, UnderscoreTransformer<UnderscoreBuilder> transformer);
 }

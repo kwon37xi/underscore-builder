@@ -1,5 +1,6 @@
 package kr.pe.kwonnam.underscore.stringbuilder;
 
+import kr.pe.kwonnam.underscore.UnderscoreBuilder;
 import kr.pe.kwonnam.underscore.UnderscorePredicate;
 import kr.pe.kwonnam.underscore.UnderscoreSubBuild;
 import kr.pe.kwonnam.underscore.UnderscoreTransformer;
@@ -26,6 +27,33 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
+    public void append_char() throws Exception {
+        underscoreStringBuilder
+            .append('a')
+            .append('b')
+            .append('C')
+            .append('D');
+
+        assertThat(underscoreStringBuilder.toString(),is("abCD"));
+    }
+
+    @Test
+    public void append_charSequence() throws Exception {
+        underscoreStringBuilder
+            .append("Hello ")
+            .append(new StringBuilder("World"));
+
+        assertThat(underscoreStringBuilder.toString(),is("Hello World"));
+    }
+
+    @Test
+    public void append_charSequence_start_end() throws Exception {
+        underscoreStringBuilder.append("Hello World!",4, 7);
+
+        assertThat(underscoreStringBuilder.toString(), is("o W"));
+    }
+
+    @Test
     public void __() throws Exception {
         underscoreStringBuilder
             .__("hello! ")
@@ -38,11 +66,11 @@ public class UnderscoreStringBuilderTest {
 
     @Test
     public void __and_transformer() throws Exception {
-        underscoreStringBuilder.__(123, new UnderscoreTransformer<UnderscoreStringBuilder, Integer>() {
+        underscoreStringBuilder.__(123, new UnderscoreTransformer<Integer>() {
             @Override
-            public void transform(UnderscoreStringBuilder underscoreBuilder, Integer appended) {
+            public String transform(Integer appended) {
                 int i = appended * 2;
-                underscoreBuilder.__(i);
+                return Integer.toString(i);
             }
         });
 
@@ -65,10 +93,10 @@ public class UnderscoreStringBuilderTest {
 
     @Test
     public void __and_appendable_false_and_transformer() throws Exception {
-        underscoreStringBuilder.__(false, new Date(), new UnderscoreTransformer<UnderscoreStringBuilder, Date>() {
+        underscoreStringBuilder.__(false, new Date(), new UnderscoreTransformer<Date>() {
             @Override
-            public void transform(UnderscoreStringBuilder underscoreBuilder, Date appended) {
-                underscoreBuilder.__(appended);
+            public CharSequence transform(Date appended) {
+                return String.valueOf(appended);
             }
         });
 
@@ -77,10 +105,10 @@ public class UnderscoreStringBuilderTest {
 
     @Test
     public void __and_appendable_true_and_transformer() throws Exception {
-        underscoreStringBuilder.__(true, new Date(), new UnderscoreTransformer<UnderscoreStringBuilder, Date>() {
+        underscoreStringBuilder.__(true, new Date(), new UnderscoreTransformer<Date>() {
             @Override
-            public void transform(UnderscoreStringBuilder underscoreBuilder, Date appended) {
-                underscoreBuilder.__(appended);
+            public CharSequence transform(Date appended) {
+                return String.valueOf(appended);
             }
         });
 
@@ -118,10 +146,10 @@ public class UnderscoreStringBuilderTest {
             public boolean evaluate() {
                 return true;
             }
-        }, -123, new UnderscoreTransformer<UnderscoreStringBuilder, Integer>() {
+        }, -123, new UnderscoreTransformer<Integer>() {
             @Override
-            public void transform(UnderscoreStringBuilder underscoreBuilder, Integer appended) {
-                underscoreBuilder.__(Math.abs(appended));
+            public CharSequence transform(Integer appended) {
+                return String.valueOf(Math.abs(appended));
             }
         });
 
@@ -143,9 +171,9 @@ public class UnderscoreStringBuilderTest {
     public void sub() throws Exception {
         underscoreStringBuilder
             .__("-")
-            .sub(new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+            .sub(new UnderscoreSubBuild() {
                 @Override
-                public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                public void subbuild(UnderscoreBuilder underscoreSubBuilder) {
                     underscoreSubBuilder.__("*");
                 }
             })
@@ -158,17 +186,20 @@ public class UnderscoreStringBuilderTest {
     public void sub_and_transformer() throws Exception {
         underscoreStringBuilder
             .__("-")
-            .sub(new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+            .sub(new UnderscoreSubBuild() {
                 @Override
-                public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                public void subbuild(UnderscoreBuilder underscoreSubBuilder) {
                     underscoreSubBuilder.__("*");
                 }
-            }, new UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder>() {
+            }, new UnderscoreTransformer<UnderscoreBuilder>() {
                 @Override
-                public void transform(UnderscoreStringBuilder underscoreBuilder, UnderscoreStringBuilder appended) {
+                public CharSequence transform(UnderscoreBuilder appended) {
+                    StringBuilder stringBuilder = new StringBuilder();
+
                     for (int i = 0; i < 5; i++) {
-                        underscoreBuilder.__(appended.toString());
+                        stringBuilder.append(appended.toString());
                     }
+                    return stringBuilder;
                 }
             })
             .__("-");
@@ -181,9 +212,9 @@ public class UnderscoreStringBuilderTest {
     public void sub_and_appendable_false() throws Exception {
         underscoreStringBuilder
             .__("[")
-            .sub(false, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+            .sub(false, new UnderscoreSubBuild() {
                 @Override
-                public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                public void subbuild(UnderscoreBuilder underscoreSubBuilder) {
                     underscoreSubBuilder.__("Hello");
                 }
             })
@@ -196,9 +227,9 @@ public class UnderscoreStringBuilderTest {
     public void sub_and_appendable_true() throws Exception {
         underscoreStringBuilder
             .__("[")
-            .sub(true, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+            .sub(true, new UnderscoreSubBuild() {
                 @Override
-                public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                public void subbuild(UnderscoreBuilder underscoreSubBuilder) {
                     underscoreSubBuilder
                         .__(123)
                         .__("Hello")
@@ -214,15 +245,15 @@ public class UnderscoreStringBuilderTest {
     public void sub_and_appendable_false_and_transformer() throws Exception {
         underscoreStringBuilder
             .__("(")
-            .sub(false, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+            .sub(false, new UnderscoreSubBuild() {
                 @Override
-                public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                public void subbuild(UnderscoreBuilder underscoreSubBuilder) {
                     underscoreSubBuilder.__("world!");
                 }
-            }, new UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder>() {
+            }, new UnderscoreTransformer<UnderscoreBuilder>() {
                 @Override
-                public void transform(UnderscoreStringBuilder underscoreBuilder, UnderscoreStringBuilder appended) {
-                    underscoreBuilder.__(appended.toString().toUpperCase());
+                public CharSequence transform(UnderscoreBuilder appended) {
+                    return appended.toString().toUpperCase();
                 }
             })
             .__(")");
@@ -234,15 +265,15 @@ public class UnderscoreStringBuilderTest {
     public void sub_and_appendable_true_and_transformer() throws Exception {
         underscoreStringBuilder
             .__("(")
-            .sub(true, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+            .sub(true, new UnderscoreSubBuild() {
                 @Override
-                public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                public void subbuild(UnderscoreBuilder underscoreSubBuilder) {
                     underscoreSubBuilder.__("world!");
                 }
-            }, new UnderscoreTransformer<UnderscoreStringBuilder, UnderscoreStringBuilder>() {
+            }, new UnderscoreTransformer<UnderscoreBuilder>() {
                 @Override
-                public void transform(UnderscoreStringBuilder underscoreBuilder, UnderscoreStringBuilder appended) {
-                    underscoreBuilder.__(appended.toString().toUpperCase());
+                public CharSequence transform(UnderscoreBuilder appended) {
+                    return appended.toString().toUpperCase();
                 }
             })
             .__(")");
@@ -271,9 +302,9 @@ public class UnderscoreStringBuilderTest {
                 public boolean evaluate() {
                     return false;
                 }
-            }, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+            }, new UnderscoreSubBuild() {
                 @Override
-                public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                public void subbuild(UnderscoreBuilder underscoreSubBuilder) {
                     underscoreSubBuilder.__("Hello");
                 }
             })
@@ -290,9 +321,9 @@ public class UnderscoreStringBuilderTest {
                 public boolean evaluate() {
                     return true;
                 }
-            }, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+            }, new UnderscoreSubBuild() {
                 @Override
-                public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                public void subbuild(UnderscoreBuilder underscoreSubBuilder) {
                     underscoreSubBuilder.__("Hello");
                 }
             })
@@ -305,9 +336,9 @@ public class UnderscoreStringBuilderTest {
         try {
             underscoreStringBuilder
                 .__("{")
-                .sub(null, new UnderscoreSubBuild<UnderscoreStringBuilder>() {
+                .sub(null, new UnderscoreSubBuild() {
                     @Override
-                    public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                    public void subbuild(UnderscoreBuilder underscoreSubBuilder) {
                         underscoreSubBuilder.__("Hello");
                     }
                 })
