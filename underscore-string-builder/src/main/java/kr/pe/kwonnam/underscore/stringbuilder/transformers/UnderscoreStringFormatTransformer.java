@@ -4,16 +4,16 @@ import kr.pe.kwonnam.underscore.UnderscoreTransformer;
 
 import java.util.Locale;
 
-public class UnderscoreFormatTransformer implements UnderscoreTransformer<String> {
+public class UnderscoreStringFormatTransformer implements UnderscoreTransformer<String> {
     private Locale locale;
 
     private Object[] args;
 
-    public UnderscoreFormatTransformer(Object... args) {
+    public UnderscoreStringFormatTransformer(Object... args) {
         this(null, args);
     }
 
-    public UnderscoreFormatTransformer(Locale locale, Object... args) {
+    public UnderscoreStringFormatTransformer(Locale locale, Object... args) {
         this.locale = locale;
         this.args = args;
     }

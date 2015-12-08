@@ -11,8 +11,8 @@ import static kr.pe.kwonnam.underscore.stringbuilder.UnderscoreStringBuilderTran
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class UnderscoreFormatTransformerTest extends AbstractTransformerTest {
-    private Logger log = LoggerFactory.getLogger(UnderscoreFormatTransformerTest.class);
+public class UnderscoreStringFormatTransformerTest extends AbstractTransformerTest {
+    private Logger log = LoggerFactory.getLogger(UnderscoreStringFormatTransformerTest.class);
 
     @Test
     public void transform_format() throws Exception {

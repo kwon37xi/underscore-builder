@@ -1,7 +1,7 @@
 package kr.pe.kwonnam.underscore.stringbuilder;
 
 import kr.pe.kwonnam.underscore.UnderscoreTransformer;
-import kr.pe.kwonnam.underscore.stringbuilder.transformers.UnderscoreFormatTransformer;
+import kr.pe.kwonnam.underscore.stringbuilder.transformers.*;
 
 import java.util.Locale;
 
@@ -18,8 +18,8 @@ public class UnderscoreStringBuilderTransformers {
      * @param args format arguments
      * @return formatted string
      */
-    public static UnderscoreFormatTransformer format(Object... args) {
-        return new UnderscoreFormatTransformer(args);
+    public static UnderscoreStringFormatTransformer format(Object... args) {
+        return new UnderscoreStringFormatTransformer(args);
     }
 
     /**
@@ -28,7 +28,47 @@ public class UnderscoreStringBuilderTransformers {
      * @param args format arguments
      * @return formatted string
      */
-    public static UnderscoreFormatTransformer format(Locale locale, Object... args) {
-        return new UnderscoreFormatTransformer(locale, args);
+    public static UnderscoreStringFormatTransformer format(Locale locale, Object... args) {
+        return new UnderscoreStringFormatTransformer(locale, args);
+    }
+
+    public static UnderscoreDateFormatTransformer dateFormat(String dateFormat) {
+        return null;
+    }
+
+    public static UnderscoreStringJoinTransformer join(Iterable<Object> args) {
+        return null;
+    }
+
+    public static UnderscoreWrapTransformer wrap(String left, String right) {
+        return null;
+    }
+
+    public static UnderscoreMultiplyTransformer multiply(int factor) {
+        return null;
+    }
+
+    public static UnderscoreMultiplyTransformer multiply(int factor, String separator) {
+        return null;
+    }
+
+    public static UnderscoreTrimTransformer trim() {
+        return null;
+    }
+
+    public static UnderscoreTrimTransformer trim(TrimOpts trimOps) {
+        return null;
+    }
+
+    public static UnderscoreLeftPadTransformer padLeft(int numberOfChars) {
+        return null;
+    }
+
+    public static UnderscoreRightPadTransformer padRight(int numberOfChars) {
+        return null;
+    }
+
+    public static UnderscoreDefaultsTransformer defaults(Object defaultValue) {
+        return null;
     }
 }
