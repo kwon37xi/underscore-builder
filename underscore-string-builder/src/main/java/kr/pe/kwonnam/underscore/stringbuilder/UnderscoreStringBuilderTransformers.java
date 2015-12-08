@@ -36,7 +36,7 @@ public class UnderscoreStringBuilderTransformers {
         return null;
     }
 
-    public static UnderscoreStringJoinTransformer join(Iterable<Object> args) {
+    public static UnderscoreStringJoinTransformer join(Iterable<?> args, String seperator) {
         return null;
     }
 
