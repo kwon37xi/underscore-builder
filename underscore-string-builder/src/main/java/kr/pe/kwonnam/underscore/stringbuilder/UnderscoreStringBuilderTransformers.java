@@ -75,16 +75,4 @@ public class UnderscoreStringBuilderTransformers {
     public static UnderscoreTrimTransformer trim(TrimOpts trimOps) {
         return null;
     }
-
-    public static UnderscoreLeftPadTransformer padLeft(int numberOfChars) {
-        return null;
-    }
-
-    public static UnderscoreRightPadTransformer padRight(int numberOfChars) {
-        return null;
-    }
-
-    public static UnderscoreDefaultsTransformer defaults(Object defaultValue) {
-        return null;
-    }
 }
