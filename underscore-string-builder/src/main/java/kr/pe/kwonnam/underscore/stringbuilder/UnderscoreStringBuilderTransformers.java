@@ -57,11 +57,11 @@ public abstract class UnderscoreStringBuilderTransformers {
     }
 
     public static UnderscoreMultiplyTransformer multiply(int factor) {
-        return null;
+        return multiply(factor, null);
     }
 
     public static UnderscoreMultiplyTransformer multiply(int factor, String separator) {
-        return null;
+        return new UnderscoreMultiplyTransformer(factor, separator);
     }
 
     public static UnderscoreTrimTransformer trim() {
