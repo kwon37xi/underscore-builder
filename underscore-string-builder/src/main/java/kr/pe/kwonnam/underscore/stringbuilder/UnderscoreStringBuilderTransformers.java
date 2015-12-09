@@ -1,5 +1,7 @@
 package kr.pe.kwonnam.underscore.stringbuilder;
 
+import kr.pe.kwonnam.underscore.stringbuilder.transformers.UnderscoreStringFormatTransformer;
+
 import kr.pe.kwonnam.underscore.UnderscoreTransformer;
 import kr.pe.kwonnam.underscore.stringbuilder.transformers.*;
 
@@ -36,8 +38,8 @@ public class UnderscoreStringBuilderTransformers {
         return new UnderscoreDateFormatTransformer(dateFormat);
     }
 
-    public static UnderscoreStringJoinTransformer join(Iterable<?> args, String seperator) {
-        return null;
+    public static UnderscoreIterableJoinTransformer join(String seperator) {
+        return new UnderscoreIterableJoinTransformer(seperator);
     }
 
     public static UnderscoreWrapTransformer wrap(String left, String right) {
