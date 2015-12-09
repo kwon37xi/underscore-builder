@@ -33,7 +33,7 @@ public class UnderscoreStringBuilderTransformers {
     }
 
     public static UnderscoreDateFormatTransformer dateFormat(String dateFormat) {
-        return null;
+        return new UnderscoreDateFormatTransformer(dateFormat);
     }
 
     public static UnderscoreStringJoinTransformer join(Iterable<?> args, String seperator) {
