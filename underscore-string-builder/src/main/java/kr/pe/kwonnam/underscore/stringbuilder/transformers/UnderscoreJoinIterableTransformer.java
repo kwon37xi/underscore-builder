@@ -7,15 +7,15 @@ import java.util.Iterator;
 /**
  * List/Array to String transformer with a separator.
  */
-public class UnderscoreIterableJoinTransformer implements UnderscoreTransformer<Iterable<?>> {
+public class UnderscoreJoinIterableTransformer implements UnderscoreTransformer<Iterable<?>> {
+
     private String separator = "";
 
-    public UnderscoreIterableJoinTransformer(String separator) {
-        if (separator == null) {
-            this.separator = "";
-            return;
-        }
-        this.separator = separator;
+    private String nullValue = null;
+
+    public UnderscoreJoinIterableTransformer(String separator, String nullValue) {
+        this.separator = separator == null ? "" : separator;
+        this.nullValue = nullValue;
     }
 
     @Override
@@ -28,7 +28,9 @@ public class UnderscoreIterableJoinTransformer implements UnderscoreTransformer<
         StringBuilder stringBuilder = new StringBuilder();
 
         while (iterator.hasNext()) {
-            stringBuilder.append(iterator.next());
+            final Object value = iterator.next();
+            stringBuilder.append(value == null ? nullValue : value);
+
             if (iterator.hasNext()) {
                 stringBuilder.append(separator);
             }

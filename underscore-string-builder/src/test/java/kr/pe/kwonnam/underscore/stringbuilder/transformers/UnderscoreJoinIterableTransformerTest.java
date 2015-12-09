@@ -1,9 +1,6 @@
 package kr.pe.kwonnam.underscore.stringbuilder.transformers;
 
-import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreStringBuilderTransformers;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,11 +8,12 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 
 import static kr.pe.kwonnam.underscore.stringbuilder.UnderscoreStringBuilderTransformers.join;
+import static kr.pe.kwonnam.underscore.stringbuilder.UnderscoreStringBuilderTransformers.joinArray;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
-public class UnderscoreIterableJoinTransformerTest extends AbstractTransformerTest {
-    private Logger log = LoggerFactory.getLogger(UnderscoreIterableJoinTransformerTest.class);
+public class UnderscoreJoinIterableTransformerTest extends AbstractTransformerTest {
+    private List<String> nullValues;
 
     private List<String> one;
 
@@ -25,6 +23,11 @@ public class UnderscoreIterableJoinTransformerTest extends AbstractTransformerTe
 
     @Before
     public void setUp() throws Exception {
+        nullValues = new ArrayList<String>();
+        nullValues.add(null);
+        nullValues.add("nonnull");
+        nullValues.add(null);
+
         one = new ArrayList<String>();
         one.add("one");
 
@@ -49,6 +52,16 @@ public class UnderscoreIterableJoinTransformerTest extends AbstractTransformerTe
     @Test
     public void transform_empty() throws Exception {
         assertThat(underscoreStringBuilder.__(Collections.emptyList(), join(",")).toString(), is(""));
+    }
+
+    @Test
+    public void transform_without_nullValue() throws Exception {
+        assertThat(underscoreStringBuilder.__(nullValues, join(",")).toString(), is("null,nonnull,null"));
+    }
+
+    @Test
+    public void transform_with_nullValue() throws Exception {
+        assertThat(underscoreStringBuilder.__(nullValues, join(",", "NULL")).toString(), is("NULL,nonnull,NULL"));
     }
 
     @Test

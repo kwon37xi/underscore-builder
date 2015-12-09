@@ -17,6 +17,7 @@ public class UnderscoreStringBuilderTransformers {
 
     /**
      * {@link String#format(String, Object...)} without {@link Locale}.
+     *
      * @param args format arguments
      * @return formatted string
      */
@@ -26,8 +27,9 @@ public class UnderscoreStringBuilderTransformers {
 
     /**
      * {@link String#format(String, Object...)} with {@link Locale}.
+     *
      * @param locale locale
-     * @param args format arguments
+     * @param args   format arguments
      * @return formatted string
      */
     public static UnderscoreStringFormatTransformer format(Locale locale, Object... args) {
@@ -38,8 +40,20 @@ public class UnderscoreStringBuilderTransformers {
         return new UnderscoreDateFormatTransformer(dateFormat);
     }
 
-    public static UnderscoreIterableJoinTransformer join(String seperator) {
-        return new UnderscoreIterableJoinTransformer(seperator);
+    public static UnderscoreJoinIterableTransformer join(String seperator) {
+        return join(seperator, null);
+    }
+
+    public static UnderscoreJoinIterableTransformer join(String seperator, String nullValue) {
+        return new UnderscoreJoinIterableTransformer(seperator, nullValue);
+    }
+
+    public static UnderscoreJoinArrayTransformer joinArray(String separator) {
+        return joinArray(separator, null);
+    }
+
+    public static UnderscoreJoinArrayTransformer joinArray(String separator, String nullValue) {
+        return new UnderscoreJoinArrayTransformer(separator, nullValue);
     }
 
     public static UnderscoreWrapTransformer wrap(String left, String right) {
