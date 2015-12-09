@@ -57,7 +57,7 @@ public class UnderscoreStringBuilderTransformers {
     }
 
     public static UnderscoreWrapTransformer wrap(String left, String right) {
-        return null;
+        return new UnderscoreWrapTransformer(left, right);
     }
 
     public static UnderscoreMultiplyTransformer multiply(int factor) {
