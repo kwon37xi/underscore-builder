@@ -4,6 +4,7 @@ import kr.pe.kwonnam.underscore.stringbuilder.transformers.UnderscoreStringForma
 
 import kr.pe.kwonnam.underscore.UnderscoreTransformer;
 import kr.pe.kwonnam.underscore.stringbuilder.transformers.*;
+import kr.pe.kwonnam.underscore.stringbuilder.transformers.trim.TrimOpts;
 
 import java.util.Locale;
 
