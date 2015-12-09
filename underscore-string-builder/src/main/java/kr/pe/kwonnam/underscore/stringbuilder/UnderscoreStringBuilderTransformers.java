@@ -10,11 +10,7 @@ import java.util.Locale;
 /**
  * {@link UnderscoreStringBuilder}'s default {@link UnderscoreTransformer}s.
  */
-public class UnderscoreStringBuilderTransformers {
-    private UnderscoreStringBuilderTransformers() {
-        // disable object creation.
-    }
-
+public abstract class UnderscoreStringBuilderTransformers {
     /**
      * {@link String#format(String, Object...)} without {@link Locale}.
      *
