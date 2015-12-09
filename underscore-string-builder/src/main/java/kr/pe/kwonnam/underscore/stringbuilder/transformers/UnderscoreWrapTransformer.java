@@ -16,11 +16,11 @@ public class UnderscoreWrapTransformer implements UnderscoreTransformer<Object> 
     }
 
     @Override
-    public CharSequence transform(Object appended) {
-        if (appended == null) {
+    public CharSequence transform(Object appendee) {
+        if (appendee == null) {
             return null;
         }
 
-        return left + appended + right;
+        return left + appendee + right;
     }
 }

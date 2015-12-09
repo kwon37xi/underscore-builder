@@ -19,11 +19,11 @@ public class UnderscoreJoinIterableTransformer implements UnderscoreTransformer<
     }
 
     @Override
-    public CharSequence transform(Iterable<?> appended) {
-        if (appended == null) {
+    public CharSequence transform(Iterable<?> appendee) {
+        if (appendee == null) {
             return null;
         }
-        final Iterator<?> iterator = appended.iterator();
+        final Iterator<?> iterator = appendee.iterator();
 
         StringBuilder stringBuilder = new StringBuilder();
 

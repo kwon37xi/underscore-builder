@@ -1,5 +1,5 @@
 package kr.pe.kwonnam.underscore;
 
 public interface UnderscoreTransformer<A>  {
-    CharSequence transform(A appended);
+    CharSequence transform(A appendee);
 }

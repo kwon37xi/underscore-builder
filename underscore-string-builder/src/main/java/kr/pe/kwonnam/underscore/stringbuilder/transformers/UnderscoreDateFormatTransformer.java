@@ -20,8 +20,8 @@ public class UnderscoreDateFormatTransformer implements UnderscoreTransformer<Da
     }
 
     @Override
-    public CharSequence transform(Date appended) {
+    public CharSequence transform(Date appendee) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
-        return simpleDateFormat.format(appended);
+        return simpleDateFormat.format(appendee);
     }
 }

@@ -19,10 +19,10 @@ public class UnderscoreStringFormatTransformer implements UnderscoreTransformer<
     }
 
     @Override
-    public String transform(String appended) {
+    public String transform(String appendee) {
         if (locale != null) {
-            return String.format(locale, appended, args);
+            return String.format(locale, appendee, args);
         }
-        return String.format(appended, args);
+        return String.format(appendee, args);
     }
 }

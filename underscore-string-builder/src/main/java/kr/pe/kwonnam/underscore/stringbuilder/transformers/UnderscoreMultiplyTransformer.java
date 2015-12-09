@@ -14,8 +14,8 @@ public class UnderscoreMultiplyTransformer implements UnderscoreTransformer<Obje
     }
 
     @Override
-    public CharSequence transform(Object appended) {
-        if (appended == null) {
+    public CharSequence transform(Object appendee) {
+        if (appendee == null) {
             return "";
         }
         StringBuilder stringBuilder = new StringBuilder();
@@ -23,7 +23,7 @@ public class UnderscoreMultiplyTransformer implements UnderscoreTransformer<Obje
             if (i > 0) {
                 stringBuilder.append(separator);
             }
-            stringBuilder.append(appended);
+            stringBuilder.append(appendee);
 
         }
         return stringBuilder.toString();

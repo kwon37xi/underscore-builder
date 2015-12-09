@@ -19,12 +19,12 @@ public class UnderscoreJoinArrayTransformer implements UnderscoreTransformer<Obj
     }
 
     @Override
-    public CharSequence transform(Object[] appended) {
-        if (appended == null) {
+    public CharSequence transform(Object[] appendee) {
+        if (appendee == null) {
             return null;
         }
 
-        final int arrayLength = appended.length;
+        final int arrayLength = appendee.length;
         if (arrayLength == 0) {
             return "";
         }
@@ -35,7 +35,7 @@ public class UnderscoreJoinArrayTransformer implements UnderscoreTransformer<Obj
             if (i > 0) {
                 stringBuilder.append(separator);
             }
-            stringBuilder.append(appended[i] == null ? nullValue : appended[i]);
+            stringBuilder.append(appendee[i] == null ? nullValue : appendee[i]);
         }
         return stringBuilder.toString();
     }

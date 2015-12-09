@@ -67,8 +67,8 @@ public class UnderscoreStringBuilderTest {
     public void __and_transformer() throws Exception {
         underscoreStringBuilder.__(123, new UnderscoreTransformer<Integer>() {
             @Override
-            public String transform(Integer appended) {
-                int i = appended * 2;
+            public String transform(Integer appendee) {
+                int i = appendee * 2;
                 return Integer.toString(i);
             }
         });
@@ -94,8 +94,8 @@ public class UnderscoreStringBuilderTest {
     public void __and_appendable_false_and_transformer() throws Exception {
         underscoreStringBuilder.__(false, new Date(), new UnderscoreTransformer<Date>() {
             @Override
-            public CharSequence transform(Date appended) {
-                return String.valueOf(appended);
+            public CharSequence transform(Date appendee) {
+                return String.valueOf(appendee);
             }
         });
 
@@ -106,8 +106,8 @@ public class UnderscoreStringBuilderTest {
     public void __and_appendable_true_and_transformer() throws Exception {
         underscoreStringBuilder.__(true, new Date(), new UnderscoreTransformer<Date>() {
             @Override
-            public CharSequence transform(Date appended) {
-                return String.valueOf(appended);
+            public CharSequence transform(Date appendee) {
+                return String.valueOf(appendee);
             }
         });
 
@@ -147,8 +147,8 @@ public class UnderscoreStringBuilderTest {
             }
         }, -123, new UnderscoreTransformer<Integer>() {
             @Override
-            public CharSequence transform(Integer appended) {
-                return String.valueOf(Math.abs(appended));
+            public CharSequence transform(Integer appendee) {
+                return String.valueOf(Math.abs(appendee));
             }
         });
 
@@ -192,11 +192,11 @@ public class UnderscoreStringBuilderTest {
                 }
             }, new UnderscoreTransformer<UnderscoreStringBuilder>() {
                 @Override
-                public CharSequence transform(UnderscoreStringBuilder appended) {
+                public CharSequence transform(UnderscoreStringBuilder appendee) {
                     StringBuilder stringBuilder = new StringBuilder();
 
                     for (int i = 0; i < 5; i++) {
-                        stringBuilder.append(appended.toString());
+                        stringBuilder.append(appendee.toString());
                     }
                     return stringBuilder;
                 }
@@ -251,8 +251,8 @@ public class UnderscoreStringBuilderTest {
                 }
             }, new UnderscoreTransformer<UnderscoreStringBuilder>() {
                 @Override
-                public CharSequence transform(UnderscoreStringBuilder appended) {
-                    return appended.toString().toUpperCase();
+                public CharSequence transform(UnderscoreStringBuilder appendee) {
+                    return appendee.toString().toUpperCase();
                 }
             })
             .__(")");
@@ -271,8 +271,8 @@ public class UnderscoreStringBuilderTest {
                 }
             }, new UnderscoreTransformer<UnderscoreStringBuilder>() {
                 @Override
-                public CharSequence transform(UnderscoreStringBuilder appended) {
-                    return appended.toString().toUpperCase();
+                public CharSequence transform(UnderscoreStringBuilder appendee) {
+                    return appendee.toString().toUpperCase();
                 }
             })
             .__(")");
