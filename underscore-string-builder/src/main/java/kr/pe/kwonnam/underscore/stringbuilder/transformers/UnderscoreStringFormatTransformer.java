@@ -23,6 +23,9 @@ public class UnderscoreStringFormatTransformer implements UnderscoreTransformer<
         if (locale != null) {
             return String.format(locale, appendee, args);
         }
+        if (appendee == null) {
+            throw new IllegalArgumentException("appendee must not be null for format.");
+        }
         return String.format(appendee, args);
     }
 }

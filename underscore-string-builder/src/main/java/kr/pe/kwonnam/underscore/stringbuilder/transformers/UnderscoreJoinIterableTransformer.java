@@ -15,13 +15,13 @@ public class UnderscoreJoinIterableTransformer implements UnderscoreTransformer<
 
     public UnderscoreJoinIterableTransformer(String separator, String nullValue) {
         this.separator = separator == null ? "" : separator;
-        this.nullValue = nullValue;
+        this.nullValue = nullValue == null ? "" : nullValue;
     }
 
     @Override
     public CharSequence transform(Iterable<?> appendee) {
         if (appendee == null) {
-            return null;
+            return "";
         }
         final Iterator<?> iterator = appendee.iterator();
 

@@ -21,6 +21,10 @@ public class UnderscoreDateFormatTransformer implements UnderscoreTransformer<Da
 
     @Override
     public CharSequence transform(Date appendee) {
+        if (appendee == null) {
+            throw new IllegalArgumentException("appendee must not be null for dateFormat.");
+        }
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
         return simpleDateFormat.format(appendee);
     }

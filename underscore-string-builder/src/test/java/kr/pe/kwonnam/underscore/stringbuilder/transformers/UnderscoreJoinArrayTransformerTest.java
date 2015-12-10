@@ -29,7 +29,7 @@ public class UnderscoreJoinArrayTransformerTest extends AbstractTransformerTest 
 
     @Test
     public void transform_null() throws Exception {
-        assertThat(underscoreStringBuilder.__((String[]) null, joinArray(",")).toString(), is("null"));
+        assertThat(underscoreStringBuilder.__((String[]) null, joinArray(",")).toString(), is(""));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class UnderscoreJoinArrayTransformerTest extends AbstractTransformerTest 
 
     @Test
     public void transform_without_nullValue() throws Exception {
-        assertThat(underscoreStringBuilder.__(nullValues, joinArray(",")).toString(), is("null,nonnull,null"));
+        assertThat(underscoreStringBuilder.__(nullValues, joinArray(",")).toString(), is(",nonnull,"));
     }
 
     @Test

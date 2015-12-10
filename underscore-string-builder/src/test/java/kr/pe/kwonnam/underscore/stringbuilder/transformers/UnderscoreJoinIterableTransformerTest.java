@@ -46,7 +46,7 @@ public class UnderscoreJoinIterableTransformerTest extends AbstractTransformerTe
 
     @Test
     public void transform_null() throws Exception {
-        assertThat(underscoreStringBuilder.__((List<String>) null, join(",")).toString(), is("null"));
+        assertThat(underscoreStringBuilder.__((List<String>) null, join(",")).toString(), is(""));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class UnderscoreJoinIterableTransformerTest extends AbstractTransformerTe
 
     @Test
     public void transform_without_nullValue() throws Exception {
-        assertThat(underscoreStringBuilder.__(nullValues, join(",")).toString(), is("null,nonnull,null"));
+        assertThat(underscoreStringBuilder.__(nullValues, join(",")).toString(), is(",nonnull,"));
     }
 
     @Test

@@ -10,12 +10,7 @@ public class UnderscoreWrapTransformerTest extends AbstractTransformerTest {
 
     @Test
     public void transform_null() throws Exception {
-        assertThat(underscoreStringBuilder.__((String)null, wrap("[", "]")).toString(), is("null"));
-    }
-
-    @Test
-    public void transform_with_nullValue() throws Exception {
-        assertThat(underscoreStringBuilder.__((String)null, wrap("[", "]")).toString(), is("null"));
+        assertThat(underscoreStringBuilder.__((String)null, wrap("[", "]")).toString(), is(""));
     }
 
     @Test

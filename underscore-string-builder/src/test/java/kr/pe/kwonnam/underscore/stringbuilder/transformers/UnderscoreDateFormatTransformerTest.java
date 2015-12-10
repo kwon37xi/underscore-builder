@@ -15,13 +15,23 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 public class UnderscoreDateFormatTransformerTest extends AbstractTransformerTest {
-    private Logger log = LoggerFactory.getLogger(UnderscoreDateFormatTransformerTest.class);
 
     private Date date;
 
     @Before
     public void setUp() throws Exception {
         date = DateUtils.parseDate("2015/12/09 23:41:19", "yyyy/MM/dd HH:mm:ss");
+    }
+
+    @Test
+    public void transform_format_appendee_null() throws Exception {
+        try {
+            underscoreStringBuilder.__((Date) null, dateFormat("yyyy/MM/dd"));
+            fail("Must throw an exception - IllegalArgumentException");
+        } catch (IllegalArgumentException ex) {
+            assertThat("Must throw an exception",
+                ex.getMessage(), is("appendee must not be null for dateFormat."));
+        }
     }
 
     @Test

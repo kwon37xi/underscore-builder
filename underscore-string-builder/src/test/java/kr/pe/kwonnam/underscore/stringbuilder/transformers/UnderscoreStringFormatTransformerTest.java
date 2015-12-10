@@ -1,5 +1,6 @@
 package kr.pe.kwonnam.underscore.stringbuilder.transformers;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +11,18 @@ import java.util.Locale;
 import static kr.pe.kwonnam.underscore.stringbuilder.UnderscoreStringBuilderTransformers.format;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 public class UnderscoreStringFormatTransformerTest extends AbstractTransformerTest {
-    private Logger log = LoggerFactory.getLogger(UnderscoreStringFormatTransformerTest.class);
+    @Test
+    public void transform_appendee_null() throws Exception {
+        try {
+            underscoreStringBuilder.__((String) null, format("hello"));
+            fail("Must throw an exception - IllegalArgumentException");
+        } catch (IllegalArgumentException ex) {
+            assertThat("Must throw an exception", ex.getMessage(), is("appendee must not be null for format."));
+        }
+    }
 
     @Test
     public void transform_format() throws Exception {

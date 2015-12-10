@@ -11,17 +11,17 @@ public class UnderscoreJoinArrayTransformer implements UnderscoreTransformer<Obj
 
     private String separator = "";
 
-    private String nullValue = null;
+    private String nullValue = "";
 
     public UnderscoreJoinArrayTransformer(String separator, String nullValue) {
         this.separator = separator == null ? "" : separator;
-        this.nullValue = nullValue;
+        this.nullValue = nullValue == null ? "" : nullValue;
     }
 
     @Override
     public CharSequence transform(Object[] appendee) {
         if (appendee == null) {
-            return null;
+            return "";
         }
 
         final int arrayLength = appendee.length;

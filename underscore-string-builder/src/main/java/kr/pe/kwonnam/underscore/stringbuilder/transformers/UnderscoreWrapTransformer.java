@@ -18,7 +18,7 @@ public class UnderscoreWrapTransformer implements UnderscoreTransformer<Object> 
     @Override
     public CharSequence transform(Object appendee) {
         if (appendee == null) {
-            return null;
+            return "";
         }
 
         return left + appendee + right;
