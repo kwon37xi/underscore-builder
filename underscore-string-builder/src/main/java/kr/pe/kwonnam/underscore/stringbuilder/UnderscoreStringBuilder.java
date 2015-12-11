@@ -1,6 +1,8 @@
 package kr.pe.kwonnam.underscore.stringbuilder;
 
-import kr.pe.kwonnam.underscore.*;
+import kr.pe.kwonnam.underscore.UnderscorePredicate;
+import kr.pe.kwonnam.underscore.UnderscoreSubBuild;
+import kr.pe.kwonnam.underscore.UnderscoreTransformer;
 
 import java.io.IOException;
 
@@ -12,6 +14,7 @@ public class UnderscoreStringBuilder implements CharSequence, Appendable {
 
     private StringBuilder stringBuilder;
 
+    private String prefix;
     private String suffix;
 
     public UnderscoreStringBuilder() {
@@ -106,19 +109,30 @@ public class UnderscoreStringBuilder implements CharSequence, Appendable {
         return sub(predicate.evaluate(), subBuild, transformer);
     }
 
+    public UnderscoreStringBuilder prefix(String prefix) {
+        this.prefix = prefix;
+        return this;
+    }
+
+    public UnderscoreStringBuilder prefixOff() {
+        return prefix(null);
+    }
+
+    public UnderscoreStringBuilder prefixNewLine() {
+        return prefix(LINE_SEPARATOR);
+    }
+
     public UnderscoreStringBuilder suffix(String suffix) {
         this.suffix = suffix;
         return this;
     }
 
     public UnderscoreStringBuilder suffixOff() {
-        this.suffix = null;
-        return this;
+        return suffix(null);
     }
 
     public UnderscoreStringBuilder suffixNewLine() {
-        this.suffix = LINE_SEPARATOR;
-        return this;
+        return suffix(LINE_SEPARATOR);
     }
 
     /**
