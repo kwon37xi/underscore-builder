@@ -66,10 +66,10 @@ public abstract class UnderscoreStringBuilderTransformers {
     }
 
     public static UnderscoreTrimTransformer trim() {
-        return null;
+        return trim(null);
     }
 
     public static UnderscoreTrimTransformer trim(TrimOpts trimOps) {
-        return null;
+        return new UnderscoreTrimTransformer(trimOps);
     }
 }

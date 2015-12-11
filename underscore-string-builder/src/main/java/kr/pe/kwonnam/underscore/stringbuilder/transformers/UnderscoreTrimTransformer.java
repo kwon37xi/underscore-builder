@@ -1,4 +1,33 @@
 package kr.pe.kwonnam.underscore.stringbuilder.transformers;
 
-public class UnderscoreTrimTransformer {
+import kr.pe.kwonnam.underscore.UnderscoreTransformer;
+import kr.pe.kwonnam.underscore.stringbuilder.transformers.trim.Trim;
+import kr.pe.kwonnam.underscore.stringbuilder.transformers.trim.TrimOpts;
+
+/**
+ * Trim string contents.
+ */
+public class UnderscoreTrimTransformer implements UnderscoreTransformer<String> {
+
+    private Trim trim;
+
+    public UnderscoreTrimTransformer(TrimOpts trimOpts) {
+        trim = new Trim();
+
+        if (trimOpts != null) {
+            trim.setPrefix(trimOpts.prefix());
+            trim.setPrefixOverrides(trimOpts.prefixOverrides());
+            trim.setSuffix(trimOpts.suffix());
+            trim.setSuffixOverrides(trimOpts.suffixOverrides());
+        }
+    }
+
+    @Override
+    public CharSequence transform(String appendee) {
+        if (appendee == null) {
+            return "";
+        }
+
+        return trim.trim(appendee);
+    }
 }
