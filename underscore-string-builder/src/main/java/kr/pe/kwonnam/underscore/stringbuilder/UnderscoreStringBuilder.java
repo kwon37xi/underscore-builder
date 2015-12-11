@@ -8,7 +8,11 @@ import java.io.IOException;
  * UnderscoreStringBuilder builds string.
  */
 public class UnderscoreStringBuilder implements CharSequence, Appendable {
+    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+
     private StringBuilder stringBuilder;
+
+    private String suffix;
 
     public UnderscoreStringBuilder() {
         this(new StringBuilder());
@@ -100,6 +104,21 @@ public class UnderscoreStringBuilder implements CharSequence, Appendable {
             throw new IllegalArgumentException("underscorePredicate must not be null.");
         }
         return sub(predicate.evaluate(), subBuild, transformer);
+    }
+
+    public UnderscoreStringBuilder suffix(String suffix) {
+        this.suffix = suffix;
+        return this;
+    }
+
+    public UnderscoreStringBuilder suffixOff() {
+        this.suffix = null;
+        return this;
+    }
+
+    public UnderscoreStringBuilder suffixNewLine() {
+        this.suffix = LINE_SEPARATOR;
+        return this;
     }
 
     /**
