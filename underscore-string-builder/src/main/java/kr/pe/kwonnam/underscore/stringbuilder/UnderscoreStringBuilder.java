@@ -15,6 +15,9 @@ public class UnderscoreStringBuilder implements CharSequence, Appendable {
     }
 
     public UnderscoreStringBuilder(StringBuilder stringBuilder) {
+        if (stringBuilder == null) {
+            throw new NullPointerException("stringBuilder must not be null.");
+        }
         this.stringBuilder = stringBuilder;
     }
 

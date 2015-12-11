@@ -26,6 +26,17 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
+    public void constructor_null() throws Exception {
+        try {
+            new UnderscoreStringBuilder(null);
+            fail("Must throw an exception - NullPointerException");
+        } catch (NullPointerException ex) {
+            assertThat("Must throw an exception",
+                ex.getMessage(), is("stringBuilder must not be null."));
+        }
+    }
+
+    @Test
     public void append_char() throws Exception {
         underscoreStringBuilder
             .append('a')
