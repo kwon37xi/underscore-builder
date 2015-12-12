@@ -10,7 +10,7 @@ import java.io.IOException;
  * UnderscoreStringBuilder builds string.
  */
 public class UnderscoreStringBuilder implements CharSequence, Appendable {
-    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+    public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
     private StringBuilder stringBuilder;
 
@@ -50,8 +50,22 @@ public class UnderscoreStringBuilder implements CharSequence, Appendable {
             return this;
         }
 
+        doPrefix();
         stringBuilder.append(appendee);
+        doSuffix();
         return this;
+    }
+
+    private void doPrefix() {
+        if (prefix != null) {
+            stringBuilder.append(prefix);
+        }
+    }
+
+    private void doSuffix() {
+        if (suffix != null) {
+            stringBuilder.append(suffix);
+        }
     }
 
     public <A> UnderscoreStringBuilder __(UnderscorePredicate predicate, A appendee) {
@@ -109,28 +123,43 @@ public class UnderscoreStringBuilder implements CharSequence, Appendable {
         return sub(predicate.evaluate(), subBuild, transformer);
     }
 
+    /**
+     * prefix appendees after this method called.
+     * @param prefix prefix string
+     * @return this
+     */
     public UnderscoreStringBuilder prefix(String prefix) {
         this.prefix = prefix;
         return this;
     }
 
+    /** disable prefixing */
     public UnderscoreStringBuilder prefixOff() {
         return prefix(null);
     }
 
+    /** prefix appendees with new line(line separator) after this method called */
     public UnderscoreStringBuilder prefixNewLine() {
         return prefix(LINE_SEPARATOR);
     }
 
+    /**
+     * suffix appendees after this method called
+     *
+     * @param suffix suffix string
+     * @return this
+     */
     public UnderscoreStringBuilder suffix(String suffix) {
         this.suffix = suffix;
         return this;
     }
 
+    /** disable suffixing */
     public UnderscoreStringBuilder suffixOff() {
         return suffix(null);
     }
 
+    /** suffix appendees with new line(line separator) after this method called */
     public UnderscoreStringBuilder suffixNewLine() {
         return suffix(LINE_SEPARATOR);
     }

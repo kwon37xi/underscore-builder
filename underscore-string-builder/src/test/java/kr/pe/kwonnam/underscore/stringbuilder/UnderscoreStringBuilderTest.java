@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
+import static kr.pe.kwonnam.underscore.stringbuilder.UnderscoreStringBuilder.LINE_SEPARATOR;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
@@ -44,7 +45,7 @@ public class UnderscoreStringBuilderTest {
             .append('C')
             .append('D');
 
-        assertThat(underscoreStringBuilder.toString(),is("abCD"));
+        assertThat(underscoreStringBuilder.toString(), is("abCD"));
     }
 
     @Test
@@ -53,12 +54,12 @@ public class UnderscoreStringBuilderTest {
             .append("Hello ")
             .append(new StringBuilder("World"));
 
-        assertThat(underscoreStringBuilder.toString(),is("Hello World"));
+        assertThat(underscoreStringBuilder.toString(), is("Hello World"));
     }
 
     @Test
     public void append_charSequence_start_end() throws Exception {
-        underscoreStringBuilder.append("Hello World!",4, 7);
+        underscoreStringBuilder.append("Hello World!", 4, 7);
 
         assertThat(underscoreStringBuilder.toString(), is("o W"));
     }
@@ -382,5 +383,92 @@ public class UnderscoreStringBuilderTest {
 
         assertThat(underscoreStringBuilder.subSequence(0, 5), is((CharSequence) "hello"));
         assertThat(underscoreStringBuilder.subSequence(6, 11), is((CharSequence) "world"));
+    }
+
+    @Test
+    public void prefix() throws Exception {
+        underscoreStringBuilder.__("start=>");
+        assertThat(underscoreStringBuilder.toString(), is("start=>"));
+
+        underscoreStringBuilder.prefix("-")
+            .__("p");
+        assertThat(underscoreStringBuilder.toString(), is("start=>-p"));
+
+        underscoreStringBuilder.__(false, "not appear");
+        assertThat(underscoreStringBuilder.toString(), is("start=>-p"));
+
+        underscoreStringBuilder.__(true, "not appear", new UnderscoreTransformer<String>() {
+            @Override
+            public CharSequence transform(String appendee) {
+                return "transformed";
+            }
+        });
+        assertThat(underscoreStringBuilder.toString(), is("start=>-p-transformed"));
+
+        underscoreStringBuilder.sub(new UnderscoreSubBuild() {
+            @Override
+            public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                underscoreSubBuilder.__("sub")
+                    .__(":anothersub");
+            }
+        });
+        assertThat(underscoreStringBuilder.toString(), is("start=>-p-transformed-sub:anothersub"));
+
+        underscoreStringBuilder.prefixNewLine()
+            .__("after new line");
+        assertThat(underscoreStringBuilder.toString(), is("start=>-p-transformed-sub:anothersub" + LINE_SEPARATOR + "after new line"));
+
+        underscoreStringBuilder.prefixOff()
+            .__(":after off");
+        assertThat(underscoreStringBuilder.toString(), is("start=>-p-transformed-sub:anothersub" + LINE_SEPARATOR + "after new line:after off"));
+    }
+
+    @Test
+    public void suffix() throws Exception {
+        underscoreStringBuilder.__("start=>");
+        assertThat(underscoreStringBuilder.toString(), is("start=>"));
+
+        underscoreStringBuilder.suffix("!")
+            .__("s");
+        assertThat(underscoreStringBuilder.toString(), is("start=>s!"));
+
+        underscoreStringBuilder.__(false, "not appear");
+        assertThat(underscoreStringBuilder.toString(), is("start=>s!"));
+
+        underscoreStringBuilder.__(true, "not appear", new UnderscoreTransformer<String>() {
+            @Override
+            public CharSequence transform(String appendee) {
+                return "transformed";
+            }
+        });
+        assertThat(underscoreStringBuilder.toString(), is("start=>s!transformed!"));
+
+        underscoreStringBuilder.sub(new UnderscoreSubBuild() {
+            @Override
+            public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                underscoreSubBuilder.__("sub")
+                    .__(":anothersub");
+            }
+        });
+        assertThat(underscoreStringBuilder.toString(), is("start=>s!transformed!sub:anothersub!"));
+
+        underscoreStringBuilder.suffixNewLine()
+            .__("after new line");
+        assertThat(underscoreStringBuilder.toString(), is("start=>s!transformed!sub:anothersub!after new line" + LINE_SEPARATOR));
+
+        underscoreStringBuilder.suffixOff()
+            .__(":after off");
+        assertThat(underscoreStringBuilder.toString(), is("start=>s!transformed!sub:anothersub!after new line" + LINE_SEPARATOR + ":after off"));
+    }
+
+    @Test
+    public void prefix_and_suffix() throws Exception {
+        underscoreStringBuilder
+            .__("Start => ")
+            .prefix("[").suffix("]")
+            .__("Hello")
+            .prefixOff().suffixOff()
+            .__(" <= End");
+        assertThat(underscoreStringBuilder.toString(), is("Start => [Hello] <= End"));
     }
 }
