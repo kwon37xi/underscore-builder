@@ -32,11 +32,13 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
         return __(appendable, appendee, null);
     }
 
-    public <A> UnderscoreStringBuilder __(A appendee, UnderscoreTransformer<A> transformer) {
-        return __(true, appendee, transformer);
+    public <A> UnderscoreStringBuilder __(A appendee, UnderscoreTransformer<A> transformer,
+                                          UnderscoreTransformer<? super CharSequence>... extraTransformers) {
+        return __(true, appendee, transformer, extraTransformers);
     }
 
-    public <A> UnderscoreStringBuilder __(boolean appendable, A appendee, UnderscoreTransformer<A> transformer) {
+    public <A> UnderscoreStringBuilder __(boolean appendable, A appendee, UnderscoreTransformer<A> transformer,
+                                          UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         if (!appendable) {
             return this;
         }
@@ -68,26 +70,29 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
         return __(predicate, appendee, null);
     }
 
-    public <A> UnderscoreStringBuilder __(UnderscorePredicate predicate, A appendee, UnderscoreTransformer<A> transformer) {
+    public <A> UnderscoreStringBuilder __(UnderscorePredicate predicate, A appendee, UnderscoreTransformer<A> transformer,
+                                          UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         if (predicate == null) {
             throw new IllegalArgumentException("underscorePredicate must not be null.");
         }
-        return __(predicate.evaluate(), appendee, transformer);
+        return __(predicate.evaluate(), appendee, transformer, extraTransformers);
     }
 
     public UnderscoreStringBuilder sub(UnderscoreSubBuild subBuild) {
         return sub(true, subBuild);
     }
 
-    public UnderscoreStringBuilder sub(UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer) {
-        return sub(true, subBuild, transformer);
+    public UnderscoreStringBuilder sub(UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer,
+                                       UnderscoreTransformer<? super CharSequence>... extraTransformers) {
+        return sub(true, subBuild, transformer, extraTransformers);
     }
 
     public UnderscoreStringBuilder sub(boolean appendable, UnderscoreSubBuild subBuild) {
         return sub(appendable, subBuild, null);
     }
 
-    public UnderscoreStringBuilder sub(boolean appendable, UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer) {
+    public UnderscoreStringBuilder sub(boolean appendable, UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer,
+                                       UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         if (!appendable) {
             return this;
         }
@@ -112,7 +117,8 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
         return sub(predicate, subBuild, null);
     }
 
-    public UnderscoreStringBuilder sub(UnderscorePredicate predicate, UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer) {
+    public UnderscoreStringBuilder sub(UnderscorePredicate predicate, UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer,
+                                       UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         if (predicate == null) {
             throw new IllegalArgumentException("underscorePredicate must not be null.");
         }
@@ -193,18 +199,33 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
         return stringBuilder.subSequence(start, end);
     }
 
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * <p>prefix/suffix does not work with append methods.</p>
+     */
     @Override
     public UnderscoreStringBuilder append(CharSequence csq) throws IOException {
         stringBuilder.append(csq);
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * <p>prefix/suffix does not work with append methods.</p>
+     */
     @Override
     public UnderscoreStringBuilder append(CharSequence csq, int start, int end) throws IOException {
         stringBuilder.append(csq, start, end);
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     * <p/>
+     * <p>prefix/suffix does not work with append methods.</p>
+     */
     @Override
     public UnderscoreStringBuilder append(char c) throws IOException {
         stringBuilder.append(c);
