@@ -1,6 +1,7 @@
 package kr.pe.kwonnam.underscore.stringbuilder.transformers.trim;
 
 
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -50,6 +52,10 @@ public class TrimTest {
 
         assertThat(trim.trim("  \r \t \n hello \r \t \n world \t \r \n  "), is("hello \r \t \n world"));
         assertThat(trim.trim("  \r \n AND username = ? AND email = ?  \r \n  \t  "), is("AND username = ? AND email = ?"));
+        assertThat(trim.getPrefix(), is(""));
+        assertThat(trim.getSuffix(), is(""));
+        assertThat(trim.getPrefixOverrides(), empty());
+        assertThat(trim.getSuffixOverrides(), empty());
     }
 
     @Test
