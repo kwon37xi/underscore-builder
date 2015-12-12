@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * UnderscoreStringBuilder builds string.
  */
-public class UnderscoreStringBuilder implements CharSequence, Appendable {
+public final class UnderscoreStringBuilder implements CharSequence, Appendable {
     public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
     private StringBuilder stringBuilder;
@@ -121,6 +121,7 @@ public class UnderscoreStringBuilder implements CharSequence, Appendable {
 
     /**
      * prefix appendees after this method called.
+     *
      * @param prefix prefix string
      * @return this
      */
@@ -129,12 +130,16 @@ public class UnderscoreStringBuilder implements CharSequence, Appendable {
         return this;
     }
 
-    /** disable prefixing */
+    /**
+     * disable prefixing
+     */
     public UnderscoreStringBuilder prefixOff() {
         return prefix(null);
     }
 
-    /** prefix appendees with new line(line separator) after this method called */
+    /**
+     * prefix appendees with new line(line separator) after this method called
+     */
     public UnderscoreStringBuilder prefixNewLine() {
         return prefix(LINE_SEPARATOR);
     }
@@ -150,12 +155,16 @@ public class UnderscoreStringBuilder implements CharSequence, Appendable {
         return this;
     }
 
-    /** disable suffixing */
+    /**
+     * disable suffixing
+     */
     public UnderscoreStringBuilder suffixOff() {
         return suffix(null);
     }
 
-    /** suffix appendees with new line(line separator) after this method called */
+    /**
+     * suffix appendees with new line(line separator) after this method called
+     */
     public UnderscoreStringBuilder suffixNewLine() {
         return suffix(LINE_SEPARATOR);
     }
