@@ -1,6 +1,6 @@
 package kr.pe.kwonnam.underscore.stringbuilder.transformers;
 
-import kr.pe.kwonnam.underscore.UnderscoreTransformer;
+import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreTransformer;
 
 public class UnderscoreMultiplyTransformer implements UnderscoreTransformer<Object> {
 

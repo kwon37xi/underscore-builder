@@ -1,4 +1,4 @@
-package kr.pe.kwonnam.underscore;
+package kr.pe.kwonnam.underscore.stringbuilder;
 
 import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreStringBuilder;
 

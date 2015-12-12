@@ -1,8 +1,6 @@
 package kr.pe.kwonnam.underscore.stringbuilder.transformers;
 
-import kr.pe.kwonnam.underscore.UnderscoreTransformer;
-
-import java.util.Iterator;
+import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreTransformer;
 
 /**
  * Iterable(Collection) to String transformer with a separator.

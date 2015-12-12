@@ -1,6 +1,6 @@
 package kr.pe.kwonnam.underscore.stringbuilder.transformers;
 
-import kr.pe.kwonnam.underscore.UnderscoreTransformer;
+import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreTransformer;
 import kr.pe.kwonnam.underscore.stringbuilder.transformers.trim.Trim;
 import kr.pe.kwonnam.underscore.stringbuilder.transformers.trim.TrimOpts;
 

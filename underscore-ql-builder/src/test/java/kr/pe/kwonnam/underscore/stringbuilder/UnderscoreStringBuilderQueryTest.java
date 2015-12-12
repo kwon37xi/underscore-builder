@@ -1,6 +1,5 @@
 package kr.pe.kwonnam.underscore.stringbuilder;
 
-import kr.pe.kwonnam.underscore.UnderscoreSubBuild;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
