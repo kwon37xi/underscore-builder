@@ -1,6 +1,5 @@
 package kr.pe.kwonnam.underscore.stringbuilder;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,8 +14,8 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static org.apache.commons.lang3.StringUtils.join;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class StringBuilderComparisonTest {
-    private Logger log = getLogger(StringBuilderComparisonTest.class);
+public class StringBuilderQueryTest {
+    private Logger log = getLogger(StringBuilderQueryTest.class);
 
     private StringBuilder sb;
 
