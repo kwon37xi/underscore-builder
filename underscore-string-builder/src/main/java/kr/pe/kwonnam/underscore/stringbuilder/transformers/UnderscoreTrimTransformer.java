@@ -7,7 +7,7 @@ import kr.pe.kwonnam.underscore.stringbuilder.transformers.trim.TrimOpts;
 /**
  * Trim string contents.
  */
-public class UnderscoreTrimTransformer implements UnderscoreTransformer<String> {
+public class UnderscoreTrimTransformer implements UnderscoreTransformer<CharSequence> {
 
     private Trim trim;
 
@@ -23,11 +23,11 @@ public class UnderscoreTrimTransformer implements UnderscoreTransformer<String> 
     }
 
     @Override
-    public CharSequence transform(String appendee) {
+    public CharSequence transform(CharSequence appendee) {
         if (appendee == null) {
             return "";
         }
 
-        return trim.trim(appendee);
+        return trim.trim(appendee.toString());
     }
 }

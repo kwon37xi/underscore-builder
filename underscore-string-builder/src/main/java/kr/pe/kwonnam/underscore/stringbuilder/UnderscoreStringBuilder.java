@@ -69,7 +69,7 @@ public class UnderscoreStringBuilder implements CharSequence, Appendable {
         return sub(true, subBuild);
     }
 
-    public UnderscoreStringBuilder sub(UnderscoreSubBuild subBuild, UnderscoreTransformer<UnderscoreStringBuilder> transformer) {
+    public UnderscoreStringBuilder sub(UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer) {
         return sub(true, subBuild, transformer);
     }
 
@@ -77,7 +77,7 @@ public class UnderscoreStringBuilder implements CharSequence, Appendable {
         return sub(appendable, subBuild, null);
     }
 
-    public UnderscoreStringBuilder sub(boolean appendable, UnderscoreSubBuild subBuild, UnderscoreTransformer<UnderscoreStringBuilder> transformer) {
+    public UnderscoreStringBuilder sub(boolean appendable, UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer) {
         if (!appendable) {
             return this;
         }
@@ -102,7 +102,7 @@ public class UnderscoreStringBuilder implements CharSequence, Appendable {
         return sub(predicate, subBuild, null);
     }
 
-    public UnderscoreStringBuilder sub(UnderscorePredicate predicate, UnderscoreSubBuild subBuild, UnderscoreTransformer<UnderscoreStringBuilder> transformer) {
+    public UnderscoreStringBuilder sub(UnderscorePredicate predicate, UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer) {
         if (predicate == null) {
             throw new IllegalArgumentException("underscorePredicate must not be null.");
         }
