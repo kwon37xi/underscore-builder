@@ -29,7 +29,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
     }
 
     public <A> UnderscoreStringBuilder __(boolean appendable, A appendee) {
-        return __(appendable, appendee, null);
+        return __(appendable, appendee, null, (UnderscoreTransformer<? super CharSequence>[]) null);
     }
 
     public <A> UnderscoreStringBuilder __(A appendee, UnderscoreTransformer<A> transformer,
@@ -67,7 +67,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
     }
 
     public <A> UnderscoreStringBuilder __(UnderscorePredicate predicate, A appendee) {
-        return __(predicate, appendee, null);
+        return __(predicate, appendee, null, (UnderscoreTransformer<? super CharSequence>[]) null);
     }
 
     public <A> UnderscoreStringBuilder __(UnderscorePredicate predicate, A appendee, UnderscoreTransformer<A> transformer,
@@ -88,7 +88,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
     }
 
     public UnderscoreStringBuilder sub(boolean appendable, UnderscoreSubBuild subBuild) {
-        return sub(appendable, subBuild, null);
+        return sub(appendable, subBuild, null, (UnderscoreTransformer<? super CharSequence>[]) null);
     }
 
     public UnderscoreStringBuilder sub(boolean appendable, UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer,
@@ -114,7 +114,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
     }
 
     public UnderscoreStringBuilder sub(UnderscorePredicate predicate, UnderscoreSubBuild subBuild) {
-        return sub(predicate, subBuild, null);
+        return sub(predicate, subBuild, null, (UnderscoreTransformer<? super CharSequence>[]) null);
     }
 
     public UnderscoreStringBuilder sub(UnderscorePredicate predicate, UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer,
@@ -122,7 +122,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
         if (predicate == null) {
             throw new IllegalArgumentException("underscorePredicate must not be null.");
         }
-        return sub(predicate.evaluate(), subBuild, transformer);
+        return sub(predicate.evaluate(), subBuild, transformer, (UnderscoreTransformer<? super CharSequence>[]) null);
     }
 
     /**
@@ -138,6 +138,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
 
     /**
      * disable prefixing
+     *
      * @return this
      */
     public UnderscoreStringBuilder prefixOff() {
@@ -146,6 +147,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
 
     /**
      * prefix appendees with new line(line separator) after this method called
+     *
      * @return this
      */
     public UnderscoreStringBuilder prefixNewLine() {
@@ -165,6 +167,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
 
     /**
      * disable suffixing
+     *
      * @return this
      */
     public UnderscoreStringBuilder suffixOff() {
@@ -173,6 +176,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
 
     /**
      * suffix appendees with new line(line separator) after this method called
+     *
      * @return this
      */
     public UnderscoreStringBuilder suffixNewLine() {
@@ -205,7 +209,6 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
 
     /**
      * {@inheritDoc}
-     *
      * <p>prefix/suffix does not work with append methods.</p>
      */
     @Override
