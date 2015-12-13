@@ -1,4 +1,4 @@
-# Underscore Builders
+# Underscore Builders for Java
 Build strings and sql/jpql/hql in a easy way.
 
 ## Requirements
@@ -9,4 +9,4 @@ Build strings and sql/jpql/hql in a easy way.
 More convenient StringBuilder.
 
 ## Underscore QL Builder
-Build SQL/JPQL/HQL with Underscore String builder in a easy way.
+Build SQL/JPQL/HQL with Underscore String Builder in a easy way.
