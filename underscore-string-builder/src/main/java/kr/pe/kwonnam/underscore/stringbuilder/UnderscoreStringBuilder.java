@@ -43,15 +43,27 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
             return this;
         }
 
-        if (transformer != null) {
-            __(transformer.transform(appendee));
-            return this;
-        }
-
         doPrefix();
-        stringBuilder.append(appendee);
+        Object finalAppendee = doTransform(appendee, transformer, extraTransformers);
+        stringBuilder.append(finalAppendee);
         doSuffix();
         return this;
+    }
+
+    private <A> Object doTransform(A appendee, UnderscoreTransformer<A> transformer, UnderscoreTransformer<? super CharSequence>[] extraTransformers) {
+        if (transformer == null) {
+            return appendee;
+        }
+
+        CharSequence transformed = transformer.transform(appendee);
+
+        if (extraTransformers != null && extraTransformers.length > 0) {
+            for (UnderscoreTransformer<? super CharSequence> extraTransformer : extraTransformers) {
+                transformed = extraTransformer.transform(transformed);
+            }
+        }
+
+        return transformed;
     }
 
     private void doPrefix() {
@@ -104,13 +116,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
         UnderscoreStringBuilder subBuilder = new UnderscoreStringBuilder();
         subBuild.subbuild(subBuilder);
 
-        if (transformer != null) {
-            __(transformer.transform(subBuilder));
-            return this;
-        }
-
-        __(subBuilder.toString());
-        return this;
+        return __(subBuilder, transformer, extraTransformers);
     }
 
     public UnderscoreStringBuilder sub(UnderscorePredicate predicate, UnderscoreSubBuild subBuild) {

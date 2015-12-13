@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Date;
 
 import static kr.pe.kwonnam.underscore.stringbuilder.UnderscoreStringBuilder.LINE_SEPARATOR;
+import static kr.pe.kwonnam.underscore.stringbuilder.UnderscoreStringBuilderTransformers.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
@@ -467,5 +468,37 @@ public class UnderscoreStringBuilderTest {
             .prefixOff().suffixOff()
             .__(" <= End");
         assertThat(underscoreStringBuilder.toString(), is("Start => [Hello] <= End"));
+    }
+
+    @Test
+    public void __and_extraTransformers() throws Exception {
+        underscoreStringBuilder
+            .__(", ", join(new Object[]{1, 2, 3}), wrap(" \n  [", "]   \t"), trim());
+
+        assertThat(underscoreStringBuilder.toString(), is("[1, 2, 3]"));
+    }
+
+    @Test
+    public void sub_and_extraTransformers() throws Exception {
+        underscoreStringBuilder
+            .sub(new UnderscoreSubBuild() {
+                @Override
+                public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                    underscoreSubBuilder
+                        .__("Hello ")
+                        .__("World!");
+                }
+            }, multiply(3, " | "), wrap(" \r\n  --+ ", " +--  \t\r"), trim());
+        assertThat(underscoreStringBuilder.toString(), is("--+ Hello World! | Hello World! | Hello World! +--"));
+    }
+
+    @Test
+    public void __and_extraTransformers_prefix_and_suffix() throws Exception {
+        underscoreStringBuilder
+            .prefix(" [").suffix("] ")
+            .__(", ", join(new Object[]{1, 2, 3}), wrap(" \n  (", ")   \t"), trim())
+            .__("=", multiply(5, "-"), wrap("--+ ", " +--"));
+
+        assertThat(underscoreStringBuilder.toString(), is(" [(1, 2, 3)]  [--+ =-=-=-=-= +--] "));
     }
 }
