@@ -138,6 +138,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
 
     /**
      * disable prefixing
+     * @return this
      */
     public UnderscoreStringBuilder prefixOff() {
         return prefix(null);
@@ -145,6 +146,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
 
     /**
      * prefix appendees with new line(line separator) after this method called
+     * @return this
      */
     public UnderscoreStringBuilder prefixNewLine() {
         return prefix(LINE_SEPARATOR);
@@ -163,6 +165,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
 
     /**
      * disable suffixing
+     * @return this
      */
     public UnderscoreStringBuilder suffixOff() {
         return suffix(null);
@@ -170,6 +173,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
 
     /**
      * suffix appendees with new line(line separator) after this method called
+     * @return this
      */
     public UnderscoreStringBuilder suffixNewLine() {
         return suffix(LINE_SEPARATOR);
@@ -201,7 +205,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
 
     /**
      * {@inheritDoc}
-     * <p/>
+     *
      * <p>prefix/suffix does not work with append methods.</p>
      */
     @Override
@@ -212,7 +216,6 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
 
     /**
      * {@inheritDoc}
-     * <p/>
      * <p>prefix/suffix does not work with append methods.</p>
      */
     @Override
@@ -223,7 +226,6 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
 
     /**
      * {@inheritDoc}
-     * <p/>
      * <p>prefix/suffix does not work with append methods.</p>
      */
     @Override

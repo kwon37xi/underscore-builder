@@ -24,6 +24,8 @@ public class TrimOpts {
 
     /**
      * @see Trim#setPrefix(String)
+     * @param prefix prefix string
+     * @return this
      */
     public TrimOpts prefix(String prefix) {
         this.prefix = prefix;
@@ -36,6 +38,8 @@ public class TrimOpts {
 
     /**
      * @see Trim#setSuffix(String)
+     * @param suffix suffix string
+     * @return this
      */
     public TrimOpts suffix(String suffix) {
         this.suffix = suffix;
@@ -48,6 +52,8 @@ public class TrimOpts {
 
     /**
      * @see Trim#setPrefixOverrides(List)
+     * @param prefixOverrides prefix overrides
+     * @return this
      */
     public TrimOpts prefixOverrides(String... prefixOverrides) {
         this.prefixOverrides = Arrays.asList(prefixOverrides);
@@ -60,6 +66,8 @@ public class TrimOpts {
 
     /**
      * @see Trim#setSuffixOverrides(List)
+     * @param suffixOverrides suffix overrides
+     * @return this
      */
     public TrimOpts suffixOverrides(String... suffixOverrides) {
         this.suffixOverrides = Arrays.asList(suffixOverrides);

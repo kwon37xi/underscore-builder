@@ -36,20 +36,20 @@ public abstract class UnderscoreStringBuilderTransformers {
         return new UnderscoreDateFormatTransformer(dateFormat);
     }
 
-    public static UnderscoreJoinIterableTransformer join(String seperator) {
-        return join(seperator, null);
+    public static UnderscoreJoinTransformer join(Iterable<?> iterable) {
+        return join(iterable, null);
     }
 
-    public static UnderscoreJoinIterableTransformer join(String seperator, String nullValue) {
-        return new UnderscoreJoinIterableTransformer(seperator, nullValue);
+    public static UnderscoreJoinTransformer join(Iterable<?> iterable, String nullValue) {
+        return new UnderscoreJoinTransformer(iterable, nullValue);
     }
 
-    public static UnderscoreJoinArrayTransformer joinArray(String separator) {
-        return joinArray(separator, null);
+    public static UnderscoreJoinTransformer join(Object[] objectArray) {
+        return join(objectArray, null);
     }
 
-    public static UnderscoreJoinArrayTransformer joinArray(String separator, String nullValue) {
-        return new UnderscoreJoinArrayTransformer(separator, nullValue);
+    public static UnderscoreJoinTransformer join(Object[] objectArray, String nullValue) {
+        return new UnderscoreJoinTransformer(objectArray, nullValue);
     }
 
     public static UnderscoreWrapTransformer wrap(String left, String right) {
