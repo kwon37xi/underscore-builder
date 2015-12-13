@@ -1,6 +1,10 @@
 # Underscore Builders
 Build strings and sql/jpql/hql in a easy way.
 
+## Requirements
+* Java 6 or later
+* no other dependencies
+
 ## Underscore String Builder
 More convenient StringBuilder.
 
