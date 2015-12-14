@@ -102,8 +102,8 @@ public class UnderscoreQlParams {
      * @param inParams query parameters for one IN clause
      * @return UnderscoreQlParameterTrasformer that will generate query string and parameters.
      */
-    public UnderscoreQlParamsTransformer inParams(Object[] inParams) {
-        return null;
+    public UnderscoreQlInParamsTransformer inParams(Object[] inParams) {
+        return new UnderscoreQlInParamsTransformer(this, inParams);
     }
 
     /**
@@ -119,7 +119,7 @@ public class UnderscoreQlParams {
      * @param inParams query parameters for one IN clause
      * @return UnderscoreQlParameterTrasformer that will generate query string and parameters.
      */
-    public UnderscoreQlParamsTransformer inParams(Iterable<?> inParams) {
-        return null;
+    public UnderscoreQlInParamsTransformer inParams(Iterable<?> inParams) {
+        return new UnderscoreQlInParamsTransformer(this, inParams);
     }
 }

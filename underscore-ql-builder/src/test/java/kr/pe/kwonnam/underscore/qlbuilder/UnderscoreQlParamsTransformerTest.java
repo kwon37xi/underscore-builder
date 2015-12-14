@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
@@ -66,6 +67,8 @@ public class UnderscoreQlParamsTransformerTest {
         underscoreStringBuilder.__("AND (user_id = %s OR user_id = %s) AND age > %s", underscoreQlParams.params("scott", "tiger", 30));
 
         assertThat(underscoreStringBuilder.toString(), is("AND (user_id = ? OR user_id = ?) AND age > ?"));
+
+        assertThat(underscoreQlParams.getQueryParameters(), hasSize(3));
         assertThat(underscoreQlParams.getQueryParameters(), hasItems((Object) "scott", "tiger", 30));
     }
 
@@ -74,5 +77,7 @@ public class UnderscoreQlParamsTransformerTest {
         underscoreStringBuilder.__("AND (user_id = %s OR user_id = %s) AND age > %s", underscoreQlParamsWithPositionalIndex.params("tiger", "scott", 20));
 
         assertThat(underscoreStringBuilder.toString(), is("AND (user_id = ?1 OR user_id = ?2) AND age > ?3"));
+        assertThat(underscoreQlParamsWithPositionalIndex.getQueryParameters(), hasSize(3));
+        assertThat(underscoreQlParamsWithPositionalIndex.getQueryParameters(), hasItems((Object) "tiger", "scott", 20));
     }
 }

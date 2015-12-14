@@ -7,6 +7,7 @@ import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreTransformer;
  */
 public class UnderscoreQlParamsTransformer implements UnderscoreTransformer<CharSequence> {
     private UnderscoreQlParams underscoreQlParams;
+
     private Object[] queryParams;
 
     public UnderscoreQlParamsTransformer(UnderscoreQlParams underscoreQlParamses, Object[] queryParams) {
