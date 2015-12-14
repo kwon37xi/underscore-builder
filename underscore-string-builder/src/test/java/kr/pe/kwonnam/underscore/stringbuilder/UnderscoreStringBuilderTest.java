@@ -479,6 +479,14 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
+    public void __and_extraTransformers_null() throws Exception {
+        underscoreStringBuilder
+            .__(", ", join(new Object[]{1, 2, 3}), (UnderscoreTransformer<? super CharSequence>[]) null);
+
+        assertThat(underscoreStringBuilder.toString(), is("1, 2, 3"));
+    }
+
+    @Test
     public void sub_and_extraTransformers() throws Exception {
         underscoreStringBuilder
             .sub(new UnderscoreSubBuild() {
