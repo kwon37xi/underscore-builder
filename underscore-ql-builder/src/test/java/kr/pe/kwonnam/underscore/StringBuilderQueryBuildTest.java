@@ -27,34 +27,35 @@ public class StringBuilderQueryBuildTest extends AbstractQueryBuildTest {
     @Test
     public void buildWithStringBuilder() throws Exception {
         List<Object> params = new ArrayList<Object>();
-        List<String> zipCodes = Arrays.asList("12345", "56789", "58391");
-
         sb
             .append("SELECT ")
             .append(join(User.COLUMNS, ", "))
             .append("\n")
-            .append("FROM users as u\n")
-            .append("WHERE 1 = 1"); // BUG!! no spaces.
-        if (user.getUserId() != null) {
-            sb.append("AND user_id = ? \n");
-            params.add(user.getUserId());
-        }
-        if (isNotEmpty(user.getName())) {
-            sb.append("AND name = ? \n");
-            params.add(user.getName());
-        }
-        if (user.getBirthday() != null) {
-            sb.append("AND birthday = ? \n");
-            params.add(user.getBirthday());
-        }
-        if (CollectionUtils.isNotEmpty(zipCodes)) {
-            List<String> inParams = new ArrayList<String>(zipCodes.size());
-            for (int i = 0; i < zipCodes.size(); i++) {
-                inParams.add("?");
-            }
+            .append("FROM users as u\n");
 
-            sb.append(String.format("AND zip_code IN (%s)", StringUtils.join(inParams, ",")));
-            params.addAll(zipCodes);
+        if (user != null) {
+            sb.append("WHERE 1 = 1"); // BUG!! no spaces.
+            if (user.getUserId() != null) {
+                sb.append("AND user_id = ? \n");
+                params.add(user.getUserId());
+            }
+            if (isNotEmpty(user.getName())) {
+                sb.append("AND name = ? \n");
+                params.add(user.getName());
+            }
+            if (user.getBirthday() != null) {
+                sb.append("AND birthday = ? \n");
+                params.add(user.getBirthday());
+            }
+            if (CollectionUtils.isNotEmpty(zipCodes)) {
+                List<String> inParams = new ArrayList<String>(zipCodes.size());
+                for (int i = 0; i < zipCodes.size(); i++) {
+                    inParams.add("?");
+                }
+
+                sb.append(String.format("AND zip_code IN (%s)", StringUtils.join(inParams, ",")));
+                params.addAll(zipCodes);
+            }
         }
         sb.append("LIMIT 10");
 
