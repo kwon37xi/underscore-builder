@@ -1,4 +1,4 @@
-package kr.pe.kwonnam.underscore.stringbuilder;
+package kr.pe.kwonnam.underscore;
 
 import java.util.Date;
 
