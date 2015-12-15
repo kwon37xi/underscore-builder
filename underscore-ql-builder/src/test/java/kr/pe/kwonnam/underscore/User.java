@@ -5,7 +5,7 @@ import java.util.Date;
 public class User {
     public static final String[] COLUMNS = new String[]{"user_id", "name", "email", "birthday", "mobile_phone", "home_phone", "address", "zip_code"};
 
-    private String userId;
+    private Long userId;
     private String name;
     private String email;
     private Date birthday;
@@ -14,11 +14,11 @@ public class User {
     private String address;
     private String zipCode;
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

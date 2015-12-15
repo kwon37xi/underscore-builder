@@ -1,5 +1,6 @@
 package kr.pe.kwonnam.underscore;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +35,7 @@ public class StringBuilderQueryBuildTest extends AbstractQueryBuildTest {
             .append("\n")
             .append("FROM users as u\n")
             .append("WHERE 1 = 1"); // BUG!! no spaces.
-        if (isNotEmpty(user.getUserId())) {
+        if (user.getUserId() != null) {
             sb.append("AND user_id = ? \n");
             params.add(user.getUserId());
         }
@@ -46,7 +47,7 @@ public class StringBuilderQueryBuildTest extends AbstractQueryBuildTest {
             sb.append("AND birthday = ? \n");
             params.add(user.getBirthday());
         }
-        if (zipCodes != null && !zipCodes.isEmpty()) {
+        if (CollectionUtils.isNotEmpty(zipCodes)) {
             List<String> inParams = new ArrayList<String>(zipCodes.size());
             for (int i = 0; i < zipCodes.size(); i++) {
                 inParams.add("?");
@@ -55,6 +56,7 @@ public class StringBuilderQueryBuildTest extends AbstractQueryBuildTest {
             sb.append(String.format("AND zip_code IN (%s)", StringUtils.join(inParams, ",")));
             params.addAll(zipCodes);
         }
+        sb.append("LIMIT 10");
 
         log.info("StringBuilder : {}", sb.toString());
         log.info("Params : {}", params);
