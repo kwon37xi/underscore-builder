@@ -2,6 +2,8 @@ package kr.pe.kwonnam.underscore.qlbuilder;
 
 import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreTransformer;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -136,5 +138,21 @@ public class UnderscoreQlParams {
      */
     public UnderscoreQlInParamsTransformer inParams(Iterable<?> inParams) {
         return new UnderscoreQlInParamsTransformer(this, inParams);
+    }
+
+    /**
+     * bind query parameters to {@link PreparedStatement}.
+     *
+     * @param preparedStatement JDBC PreparedStatement
+     * @throws SQLException sql exception
+     */
+    public void bindParameters(PreparedStatement preparedStatement) throws SQLException {
+        if (preparedStatement == null) {
+            throw new IllegalArgumentException("preparedStatement must not be null.");
+        }
+
+        for (int i = 0; i < queryParameters.size(); i++) {
+            preparedStatement.setObject(i + 1, queryParameters.get(i));
+        }
     }
 }
