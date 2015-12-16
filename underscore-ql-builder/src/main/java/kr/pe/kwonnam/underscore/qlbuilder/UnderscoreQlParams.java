@@ -41,6 +41,7 @@ public class UnderscoreQlParams {
 
     /**
      * instantiate UnderscoreQlParams with positional index option
+     *
      * @return this
      */
     public static UnderscoreQlParams withPositionalIndex() {
@@ -51,8 +52,22 @@ public class UnderscoreQlParams {
         return withPositionalIndex;
     }
 
+    /**
+     * Query Parameters as List
+     *
+     * @return query parameters
+     */
     public List<Object> getQueryParameters() {
         return Collections.unmodifiableList(queryParameters);
+    }
+
+    /**
+     * Query Parameters as array
+     *
+     * @return query parameters
+     */
+    public Object[] getQueryParameterArray() {
+        return queryParameters.toArray(new Object[queryParameters.size()]);
     }
 
     public int getCurrentPositionalIndex() {

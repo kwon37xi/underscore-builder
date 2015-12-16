@@ -24,6 +24,7 @@ public class UnderscoreQlParamsTest {
     public void constructor_default() throws Exception {
         assertThat(underscoreQlParams.isWithPositionalIndex(), is(false));
         assertThat(underscoreQlParams.getQueryParameters().size(), is(0));
+        assertThat(underscoreQlParams.getQueryParameterArray().length, is(0));
     }
 
     @Test
@@ -31,6 +32,7 @@ public class UnderscoreQlParamsTest {
         UnderscoreQlParams underscoreQlParams = new UnderscoreQlParams(true);
         assertThat(underscoreQlParams.isWithPositionalIndex(), is(true));
         assertThat(underscoreQlParams.getQueryParameters().size(), is(0));
+        assertThat(underscoreQlParams.getQueryParameterArray().length, is(0));
     }
 
     @Test
@@ -38,6 +40,7 @@ public class UnderscoreQlParamsTest {
         UnderscoreQlParams underscoreQlParams = UnderscoreQlParams.withPositionalIndex();
         assertThat(underscoreQlParams.isWithPositionalIndex(), is(true));
         assertThat(underscoreQlParams.getQueryParameters(), hasSize(0));
+        assertThat(underscoreQlParams.getQueryParameterArray().length, is(0));
     }
 
     @Test
@@ -45,16 +48,21 @@ public class UnderscoreQlParamsTest {
         underscoreQlParams.addParam("contents");
         assertThat(underscoreQlParams.getQueryParameters(), hasSize(1));
         assertThat(underscoreQlParams.getQueryParameters(), hasItem("contents"));
+        assertThat(underscoreQlParams.getQueryParameterArray().length, is(1));
+        assertThat(underscoreQlParams.getQueryParameterArray(), hasItemInArray((Object) "contents"));
         assertThat(underscoreQlParams.getCurrentPositionalIndex(), is(1));
 
         underscoreQlParams.addParam(null);
         assertThat(underscoreQlParams.getQueryParameters(), hasSize(2));
-        assertThat(underscoreQlParams.getQueryParameters(), hasItems((Object)"contents", null));
+        assertThat(underscoreQlParams.getQueryParameters(), hasItems((Object) "contents", null));
+        assertThat(underscoreQlParams.getQueryParameterArray().length, is(2));
+        assertThat(underscoreQlParams.getQueryParameterArray()[0], is((Object) "contents"));
+        assertThat(underscoreQlParams.getQueryParameterArray()[1], nullValue());
         assertThat(underscoreQlParams.getCurrentPositionalIndex(), is(2));
 
         underscoreQlParams.addParam(1234567);
         assertThat(underscoreQlParams.getQueryParameters(), hasSize(3));
-        assertThat(underscoreQlParams.getQueryParameters(), hasItems((Object)"contents", null, 1234567));
+        assertThat(underscoreQlParams.getQueryParameters(), hasItems((Object) "contents", null, 1234567));
         assertThat(underscoreQlParams.getCurrentPositionalIndex(), is(3));
     }
 }
