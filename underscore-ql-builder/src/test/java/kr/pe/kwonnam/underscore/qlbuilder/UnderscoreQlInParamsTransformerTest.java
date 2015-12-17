@@ -91,7 +91,7 @@ public class UnderscoreQlInParamsTransformerTest {
     public void inParams_array() throws Exception {
         underscoreStringBuilder.__("user_id IN (%s)", underscoreQlParams.inParams(new String[]{"scott", "tiger", "jane"}));
 
-        assertThat(underscoreStringBuilder.toString(), is("user_id IN (?,?,?)"));
+        assertThat(underscoreStringBuilder.toString(), is("user_id IN (?, ?, ?)"));
         assertThat(underscoreQlParams.getQueryParameters(), hasSize(3));
         assertThat(underscoreQlParams.getQueryParameters(), hasItems((Object) "scott", "tiger", "jane"));
     }
@@ -100,7 +100,7 @@ public class UnderscoreQlInParamsTransformerTest {
     public void inParams_array_withPositionalIndex() throws Exception {
         underscoreStringBuilder.__("user_id IN (%s)", underscoreQlParamsWithPositionalIndex.inParams(new String[]{"scott", "tiger", "jane"}));
 
-        assertThat(underscoreStringBuilder.toString(), is("user_id IN (?1,?2,?3)"));
+        assertThat(underscoreStringBuilder.toString(), is("user_id IN (?1, ?2, ?3)"));
         assertThat(underscoreQlParamsWithPositionalIndex.getQueryParameters(), hasSize(3));
         assertThat(underscoreQlParamsWithPositionalIndex.getQueryParameters(), hasItems((Object) "scott", "tiger", "jane"));
     }
@@ -109,7 +109,7 @@ public class UnderscoreQlInParamsTransformerTest {
     public void inParams_iterable() throws Exception {
         underscoreStringBuilder.__("user_id IN (%s)", underscoreQlParams.inParams(new ArrayList<String>(Arrays.asList("scott", "tiger", "jane"))));
 
-        assertThat(underscoreStringBuilder.toString(), is("user_id IN (?,?,?)"));
+        assertThat(underscoreStringBuilder.toString(), is("user_id IN (?, ?, ?)"));
         assertThat(underscoreQlParams.getQueryParameters(), hasSize(3));
         assertThat(underscoreQlParams.getQueryParameters(), hasItems((Object) "scott", "tiger", "jane"));
     }
@@ -118,7 +118,7 @@ public class UnderscoreQlInParamsTransformerTest {
     public void inParams_iterable_withPositionalIndex() throws Exception {
         underscoreStringBuilder.__("user_id IN (%s)", underscoreQlParamsWithPositionalIndex.inParams(new ArrayList<String>(Arrays.asList("scott", "tiger", "jane"))));
 
-        assertThat(underscoreStringBuilder.toString(), is("user_id IN (?1,?2,?3)"));
+        assertThat(underscoreStringBuilder.toString(), is("user_id IN (?1, ?2, ?3)"));
         assertThat(underscoreQlParamsWithPositionalIndex.getQueryParameters(), hasSize(3));
         assertThat(underscoreQlParamsWithPositionalIndex.getQueryParameters(), hasItems((Object) "scott", "tiger", "jane"));
 

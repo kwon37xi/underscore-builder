@@ -49,7 +49,7 @@ public class UnderscoreQlInParamsTransformer implements UnderscoreTransformer<Ch
 
         for (int i = 0; i < inQueryParamsArray.length; i++) {
             if (i > 0) {
-                positionalParameterBuilder.append(",");
+                positionalParameterBuilder.append(", ");
             }
             final String positionalParameter = underscoreQlParams.addParam(inQueryParamsArray[i]);
             positionalParameterBuilder.append(positionalParameter);
@@ -65,7 +65,7 @@ public class UnderscoreQlInParamsTransformer implements UnderscoreTransformer<Ch
             positionalParameterBuilder.append(positionalParameter);
 
             if (iterator.hasNext()) {
-                positionalParameterBuilder.append(",");
+                positionalParameterBuilder.append(", ");
             }
         }
         return String.format(appendee.toString(), positionalParameterBuilder.toString());
