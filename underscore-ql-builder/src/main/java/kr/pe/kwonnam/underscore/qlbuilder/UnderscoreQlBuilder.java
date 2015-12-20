@@ -18,14 +18,6 @@ public class UnderscoreQlBuilder implements CharSequence, Appendable {
     private UnderscoreStringBuilder underscoreStringBuilder = new UnderscoreStringBuilder();
     private UnderscoreQlParams underscoreQlParams = new UnderscoreQlParams();
 
-    public UnderscoreQlBuilder() {
-    }
-
-    public UnderscoreQlBuilder(UnderscoreStringBuilder underscoreStringBuilder, UnderscoreQlParams underscoreQlParams) {
-        setUnderscoreStringBuilder(underscoreStringBuilder);
-        setUnderscoreQlParams(underscoreQlParams);
-    }
-
     public void setUnderscoreStringBuilder(UnderscoreStringBuilder underscoreStringBuilder) {
         this.underscoreStringBuilder = underscoreStringBuilder;
     }
@@ -83,79 +75,133 @@ public class UnderscoreQlBuilder implements CharSequence, Appendable {
         underscoreQlParams.bindParameters(preparedStatement);
     }
 
+    /**
+     * @see UnderscoreStringBuilder#__(Object)
+     */
     public <A> UnderscoreStringBuilder __(A appendee) {
         return underscoreStringBuilder.__(appendee);
     }
 
+    /**
+     * @see UnderscoreStringBuilder#__(boolean, Object)
+     */
     public <A> UnderscoreStringBuilder __(boolean appendable, A appendee) {
         return underscoreStringBuilder.__(appendable, appendee);
     }
 
+    /**
+     * @see UnderscoreStringBuilder#__(Object, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public <A> UnderscoreStringBuilder __(A appendee, UnderscoreTransformer<A> transformer, UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         return underscoreStringBuilder.__(appendee, transformer, extraTransformers);
     }
 
+    /**
+     * @see UnderscoreStringBuilder#__(boolean, Object, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public <A> UnderscoreStringBuilder __(boolean appendable, A appendee, UnderscoreTransformer<A> transformer,
                                           UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         return underscoreStringBuilder.__(appendable, appendee, transformer, extraTransformers);
     }
 
+    /**
+     * @see UnderscoreStringBuilder#__(UnderscorePredicate, Object)
+     */
     public <A> UnderscoreStringBuilder __(UnderscorePredicate predicate, A appendee) {
         return underscoreStringBuilder.__(predicate, appendee);
     }
 
+    /**
+     * @see UnderscoreStringBuilder#__(UnderscorePredicate, Object, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public <A> UnderscoreStringBuilder __(UnderscorePredicate predicate, A appendee, UnderscoreTransformer<A> transformer,
                                           UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         return underscoreStringBuilder.__(predicate, appendee, transformer, extraTransformers);
     }
 
+    /**
+     * @see UnderscoreStringBuilder#sub(UnderscoreSubBuild)
+     */
     public UnderscoreStringBuilder sub(UnderscoreSubBuild subBuild) {
         return underscoreStringBuilder.sub(subBuild);
     }
 
+    /**
+     * @see UnderscoreStringBuilder#sub(UnderscoreSubBuild, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public UnderscoreStringBuilder sub(UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer,
                                        UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         return underscoreStringBuilder.sub(subBuild, transformer, extraTransformers);
     }
 
+    /**
+     * @see UnderscoreStringBuilder#sub(boolean, UnderscoreSubBuild)
+     */
     public UnderscoreStringBuilder sub(boolean appendable, UnderscoreSubBuild subBuild) {
         return underscoreStringBuilder.sub(appendable, subBuild);
     }
 
+    /**
+     * @see UnderscoreStringBuilder#sub(boolean, UnderscoreSubBuild, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public UnderscoreStringBuilder sub(boolean appendable, UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer,
                                        UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         return underscoreStringBuilder.sub(appendable, subBuild, transformer, extraTransformers);
     }
 
+    /**
+     * @see UnderscoreStringBuilder#sub(UnderscorePredicate, UnderscoreSubBuild)
+     */
     public UnderscoreStringBuilder sub(UnderscorePredicate predicate, UnderscoreSubBuild subBuild) {
         return underscoreStringBuilder.sub(predicate, subBuild);
     }
 
+    /**
+     * @see UnderscoreStringBuilder#sub(UnderscorePredicate, UnderscoreSubBuild, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public UnderscoreStringBuilder sub(UnderscorePredicate predicate, UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer,
                                        UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         return underscoreStringBuilder.sub(predicate, subBuild, transformer, extraTransformers);
     }
 
+    /**
+     * @see UnderscoreStringBuilder#prefix(String)
+     */
     public UnderscoreStringBuilder prefix(String prefix) {
         return underscoreStringBuilder.prefix(prefix);
     }
 
+    /**
+     * @see UnderscoreStringBuilder#prefixOff()
+     */
     public UnderscoreStringBuilder prefixOff() {
         return underscoreStringBuilder.prefixOff();
     }
 
+    /**
+     * @see UnderscoreStringBuilder#prefixNewLine()
+     */
     public UnderscoreStringBuilder prefixNewLine() {
         return underscoreStringBuilder.prefixNewLine();
     }
 
+    /**
+     * @see UnderscoreStringBuilder#suffix(String)
+     */
     public UnderscoreStringBuilder suffix(String suffix) {
         return underscoreStringBuilder.suffix(suffix);
     }
 
+    /**
+     * @see UnderscoreStringBuilder#suffixOff()
+     */
     public UnderscoreStringBuilder suffixOff() {
         return underscoreStringBuilder.suffixOff();
     }
 
+    /**
+     * @see UnderscoreStringBuilder#suffixNewLine()
+     */
     public UnderscoreStringBuilder suffixNewLine() {
         return underscoreStringBuilder.suffixNewLine();
     }
@@ -200,7 +246,7 @@ public class UnderscoreQlBuilder implements CharSequence, Appendable {
     }
 
     public boolean ifNull(Object object) {
-        return false;
+        return object == null;
     }
 
     public boolean ifNotNull(Object object) {
@@ -208,7 +254,7 @@ public class UnderscoreQlBuilder implements CharSequence, Appendable {
     }
 
     public boolean ifEmpty(String str) {
-        return false;
+        return str == null || str.isEmpty();
     }
 
     public boolean ifNotEmpty(String str) {
