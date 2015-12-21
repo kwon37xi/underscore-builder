@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Build QL(SQL,JPQL,HQL and etc) with {@link UnderscoreStringBuilder} and {@link UnderscoreQlParams}.
@@ -245,115 +246,191 @@ public class UnderscoreQlBuilder implements CharSequence, Appendable {
         return !bool;
     }
 
-    public boolean ifNull(Object object) {
+    public boolean isNull(Object object) {
         return object == null;
     }
 
-    public boolean ifNotNull(Object object) {
-        return !ifNull(object);
-    }
-
-    public boolean ifEmpty(String str) {
+    public boolean isEmpty(String str) {
         return str == null || str.isEmpty();
     }
 
-    public boolean ifNotEmpty(String str) {
-        return !ifEmpty(str);
+    public boolean isEmpty(Collection<?> collection) {
+        return collection == null || collection.isEmpty();
     }
 
-    public boolean ifEmpty(Collection<?> collection) {
+    public boolean isEmpty(Map<?, ?> map) {
+        return map == null || map.isEmpty();
+    }
+
+    public boolean isEmpty(Object[] array) {
+        return array == null || array.length == 0;
+    }
+
+    public boolean isEmpty(boolean[] array) {
+        return array == null || array.length == 0;
+    }
+
+    public boolean isEmpty(byte[] array) {
+        return array == null || array.length == 0;
+    }
+
+    public boolean isEmpty(char[] array) {
+        return array == null || array.length == 0;
+    }
+
+    public boolean isEmpty(short[] array) {
+        return array == null || array.length == 0;
+    }
+
+    public boolean isEmpty(int[] array) {
+        return array == null || array.length == 0;
+    }
+
+    public boolean isEmpty(long[] array) {
+        return array == null || array.length == 0;
+    }
+
+    public boolean isEmpty(float[] array) {
+        return array == null || array.length == 0;
+    }
+
+    public boolean isEmpty(double[] array) {
+        return array == null || array.length == 0;
+    }
+
+    public boolean isBlank(String str) {
+        return str == null || str.isEmpty() || str.trim().isEmpty();
+    }
+
+    public boolean contains(String str, String subStr) {
         return false;
     }
 
-    public boolean ifNotEmpty(Collection<?> collection) {
-        return !ifEmpty(collection);
-    }
-
-    public boolean ifEmpty(Object[] objectArray) {
+    public boolean contains(Collection<?> collection, Object object) {
         return false;
     }
 
-    public boolean ifNotEmpty(Object[] objectArray) {
-        return !ifEmpty(objectArray);
-    }
-
-    public boolean ifBlank(CharSequence str) {
+    public boolean contains(Object[] array, Object object) {
         return false;
     }
 
-    public boolean ifNotBlank(String str) {
-        return !ifBlank(str);
-    }
-
-    public boolean ifContains(String str, String subStr) {
+    public boolean contains(boolean[] array, boolean object) {
         return false;
     }
 
-    public boolean ifNotContains(String str, String subStr) {
-        return !ifContains(str, subStr);
-    }
-
-    public boolean ifContains(Object[] objectArray, Object object) {
+    public boolean contains(byte[] array, byte object) {
         return false;
     }
 
-    public boolean ifNotContains(Object[] objectArray, Object object) {
+    public boolean contains(char[] array, char object) {
         return false;
     }
 
-    public boolean ifContains(Collection<?> collection, Object object) {
+    public boolean contains(short[] array, short object) {
         return false;
     }
 
-    public boolean ifNotContains(Collection<?> collection, Object object) {
-        return !ifContains(collection, object);
-    }
-
-    public boolean ifContainsAny(String str, String... subStrs) {
+    public boolean contains(int[] array, int object) {
         return false;
     }
 
-    public boolean ifNotContainsAny(String str, String... subStrs) {
-        return !ifContainsAny(str, subStrs);
-    }
-
-    public boolean ifContainsAny(Object[] objectArray, Object... objects) {
+    public boolean contains(long[] array, long object) {
         return false;
     }
 
-    public boolean ifNotContainsAny(Object[] objectArray, Object... objects) {
-        return !ifContains(objectArray, objects);
-    }
-
-    public boolean ifContainsAny(Collection<?> collection, Object... objects) {
+    public boolean contains(float[] array, float object) {
         return false;
     }
 
-    public boolean ifNotContainsAny(Collection<?> collection, Object... objects) {
-        return !ifContainsAny(collection, objects);
-    }
-
-    public boolean ifContainsAll(String str, String... subStrs) {
+    public boolean contains(double[] array, double object) {
         return false;
     }
 
-    public boolean ifNotContainsAll(String str, String... subStrs) {
-        return !ifContainsAll(str, subStrs);
-    }
-
-    public boolean ifContainsAll(Object[] objectArray, Object... objects) {
+    public boolean containsAny(String str, String... subStrs) {
         return false;
     }
 
-    public boolean ifNotContainsAll(Object[] objectArray, Object... objects) {
-        return !ifContains(objectArray, objects);
-    }
-
-    public boolean ifContainsAll(Collection<?> collection, Object... objects) {
+    public boolean containsAny(Collection<?> collection, Object... objects) {
         return false;
     }
 
-    public boolean ifNotContainsAll(Collection<?> collection, Object... objects) {
-        return !ifContainsAll(collection, objects);
+    public boolean containsAny(Object[] array, Object object) {
+        return false;
+    }
+
+    public boolean containsAny(boolean[] array, boolean object) {
+        return false;
+    }
+
+    public boolean containsAny(byte[] array, byte object) {
+        return false;
+    }
+
+    public boolean containsAny(char[] array, char object) {
+        return false;
+    }
+
+    public boolean containsAny(short[] array, short object) {
+        return false;
+    }
+
+    public boolean containsAny(int[] array, int object) {
+        return false;
+    }
+
+    public boolean containsAny(long[] array, long object) {
+        return false;
+    }
+
+    public boolean containsAny(float[] array, float object) {
+        return false;
+    }
+
+    public boolean containsAny(double[] array, double object) {
+        return false;
+    }
+
+    public boolean containsAll(String str, String... subStrs) {
+        return false;
+    }
+
+    public boolean containsAll(Collection<?> collection, Object... objects) {
+        return false;
+    }
+
+    public boolean containsAll(Object[] array, Object object) {
+        return false;
+    }
+
+    public boolean containsAll(boolean[] array, boolean object) {
+        return false;
+    }
+
+    public boolean containsAll(byte[] array, byte object) {
+        return false;
+    }
+
+    public boolean containsAll(char[] array, char object) {
+        return false;
+    }
+
+    public boolean containsAll(short[] array, short object) {
+        return false;
+    }
+
+    public boolean containsAll(int[] array, int object) {
+        return false;
+    }
+
+    public boolean containsAll(long[] array, long object) {
+        return false;
+    }
+
+    public boolean containsAll(float[] array, float object) {
+        return false;
+    }
+
+    public boolean containsAll(double[] array, double object) {
+        return false;
     }
 }
