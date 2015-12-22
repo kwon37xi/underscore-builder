@@ -153,6 +153,13 @@ public class UnderscoreQlBuilderTest {
 
     @Test
     public void contains_String() throws Exception {
-        assertFalse("do code from here", true);
+        assertThat(underscoreQlBuilder.contains((String)null, "hello"), is(false));
+        assertThat(underscoreQlBuilder.contains("", "hello"), is(false));
+        assertThat(underscoreQlBuilder.contains("world", "hello"), is(false));
+
+        assertThat(underscoreQlBuilder.contains("world", "or"), is(true));
+        assertThat(underscoreQlBuilder.contains("world", "w"), is(true));
+        assertThat(underscoreQlBuilder.contains("world", "d"), is(true));
     }
+
 }

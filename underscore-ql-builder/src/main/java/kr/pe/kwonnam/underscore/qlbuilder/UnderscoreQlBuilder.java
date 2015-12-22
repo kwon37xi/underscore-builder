@@ -299,11 +299,14 @@ public class UnderscoreQlBuilder implements CharSequence, Appendable {
     }
 
     public boolean isBlank(String str) {
-        return str == null || str.isEmpty() || str.trim().isEmpty();
+        return isEmpty(str) || str.trim().isEmpty();
     }
 
     public boolean contains(String str, String subStr) {
-        return false;
+        if (isEmpty(str)) {
+            return false;
+        }
+        return str.contains(subStr);
     }
 
     public boolean contains(Collection<?> collection, Object object) {
