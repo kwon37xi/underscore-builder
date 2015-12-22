@@ -153,7 +153,7 @@ public class UnderscoreQlBuilderTest {
 
     @Test
     public void contains_String() throws Exception {
-        assertThat(underscoreQlBuilder.contains((String)null, "hello"), is(false));
+        assertThat(underscoreQlBuilder.contains((String) null, "hello"), is(false));
         assertThat(underscoreQlBuilder.contains("", "hello"), is(false));
         assertThat(underscoreQlBuilder.contains("world", "hello"), is(false));
 
@@ -162,4 +162,14 @@ public class UnderscoreQlBuilderTest {
         assertThat(underscoreQlBuilder.contains("world", "d"), is(true));
     }
 
+    @Test
+    public void contains_collection() throws Exception {
+        assertThat(underscoreQlBuilder.contains((Collection<?>) null, "object"), is(false));
+        assertThat(underscoreQlBuilder.contains(Collections.emptyList(), "object"), is(false));
+        assertThat(underscoreQlBuilder.contains(Arrays.asList("Hello", "World", "Good", "Morning"), "Afternoon"), is(false));
+
+        assertThat(underscoreQlBuilder.contains(Arrays.asList("Hello", "World", "Good", "Morning"), "World"), is(true));
+        assertThat(underscoreQlBuilder.contains(Arrays.asList("Hello", "World", "Good", "Morning"), "Morning"), is(true));
+
+    }
 }

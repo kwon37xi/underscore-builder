@@ -310,7 +310,10 @@ public class UnderscoreQlBuilder implements CharSequence, Appendable {
     }
 
     public boolean contains(Collection<?> collection, Object object) {
-        return false;
+        if (isEmpty(collection)) {
+            return false;
+        }
+        return collection.contains(object);
     }
 
     public boolean contains(Object[] array, Object object) {
