@@ -170,6 +170,19 @@ public class UnderscoreQlBuilderTest {
 
         assertThat(underscoreQlBuilder.contains(Arrays.asList("Hello", "World", "Good", "Morning"), "World"), is(true));
         assertThat(underscoreQlBuilder.contains(Arrays.asList("Hello", "World", "Good", "Morning"), "Morning"), is(true));
+    }
 
+    @Test
+    public void contains_Object_array() throws Exception {
+        assertThat(underscoreQlBuilder.contains((Object[]) null, null), is(false));
+        assertThat(underscoreQlBuilder.contains((Object[]) null, "object"), is(false));
+        assertThat(underscoreQlBuilder.contains(new Object[]{}, null), is(false));
+        assertThat(underscoreQlBuilder.contains(new Object[]{}, "object"), is(false));
+        assertThat(underscoreQlBuilder.contains(new Object[]{1, 2, 3, 4, 5}, 6), is(false));
+        assertThat(underscoreQlBuilder.contains(new Object[]{"Hello", "World", "Good", "Morning"}, "Afternoon"), is(false));
+
+        assertThat(underscoreQlBuilder.contains(new Object[]{1, 2, 3, 4, 5}, 3), is(true));
+        assertThat(underscoreQlBuilder.contains(new Object[]{"Hello", "World", "Good", "Morning"}, "World"), is(true));
+        assertThat(underscoreQlBuilder.contains(new Object[]{"Hello", "World", "Good", "Morning"}, "Morning"), is(true));
     }
 }

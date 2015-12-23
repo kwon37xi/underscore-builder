@@ -8,6 +8,7 @@ import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreTransformer;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -303,21 +304,15 @@ public class UnderscoreQlBuilder implements CharSequence, Appendable {
     }
 
     public boolean contains(String str, String subStr) {
-        if (isEmpty(str)) {
-            return false;
-        }
-        return str.contains(subStr);
+        return !isEmpty(str) && str.contains(subStr);
     }
 
     public boolean contains(Collection<?> collection, Object object) {
-        if (isEmpty(collection)) {
-            return false;
-        }
-        return collection.contains(object);
+        return !isEmpty(collection) && collection.contains(object);
     }
 
     public boolean contains(Object[] array, Object object) {
-        return false;
+        return !(array == null || array.length == 0) && contains(Arrays.asList(array), object);
     }
 
     public boolean contains(boolean[] array, boolean object) {
