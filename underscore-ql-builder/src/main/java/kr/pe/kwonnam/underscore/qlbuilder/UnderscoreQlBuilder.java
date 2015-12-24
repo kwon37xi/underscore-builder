@@ -303,135 +303,144 @@ public class UnderscoreQlBuilder implements CharSequence, Appendable {
         return isEmpty(str) || str.trim().isEmpty();
     }
 
-    public boolean contains(String str, String subStr) {
-        return !isEmpty(str) && str.contains(subStr);
+    public boolean contains(String str, String value) {
+        return !isEmpty(str) && str.contains(value);
     }
 
-    public boolean contains(Collection<?> collection, Object object) {
-        return !isEmpty(collection) && collection.contains(object);
+    public boolean contains(Collection<?> collection, Object value) {
+        return !isEmpty(collection) && collection.contains(value);
     }
 
-    public boolean contains(Object[] array, Object object) {
-        return !(array == null || array.length == 0) && contains(Arrays.asList(array), object);
+    public boolean contains(Object[] array, Object value) {
+        return !(array == null || array.length == 0) && contains(Arrays.asList(array), value);
     }
 
-    public boolean contains(boolean[] array, boolean object) {
+    public boolean contains(boolean[] array, boolean value) {
+        if (array == null || array.length == 0) {
+            return false;
+        }
+
+        for (boolean b : array) {
+            if (b == value) {
+                return true;
+            }
+        }
         return false;
     }
 
-    public boolean contains(byte[] array, byte object) {
+    public boolean contains(byte[] array, byte value) {
+        return !(array == null || array.length == 0) && Arrays.binarySearch(array, value) >= 0;
+    }
+
+    public boolean contains(char[] array, char value) {
+        return !(array == null || array.length == 0) && Arrays.binarySearch(array, value) >= 0;
+    }
+
+    public boolean contains(short[] array, short value) {
+        return !(array == null || array.length == 0) && Arrays.binarySearch(array, value) >= 0;
+    }
+
+    public boolean contains(int[] array, int value) {
+        return !(array == null || array.length == 0) && Arrays.binarySearch(array, value) >= 0;
+    }
+
+    public boolean contains(long[] array, long value) {
+        return !(array == null || array.length == 0) && Arrays.binarySearch(array, value) >= 0;
+    }
+
+    public boolean contains(float[] array, float value) {
+        return !(array == null || array.length == 0) && Arrays.binarySearch(array, value) >= 0;
+    }
+
+    public boolean contains(double[] array, double value) {
+        return !(array == null || array.length == 0) && Arrays.binarySearch(array, value) >= 0;
+    }
+
+    public boolean containsAny(String str, String... values) {
         return false;
     }
 
-    public boolean contains(char[] array, char object) {
+    public boolean containsAny(Collection<?> collection, Object... values) {
         return false;
     }
 
-    public boolean contains(short[] array, short object) {
+    public boolean containsAny(Object[] array, Object value) {
         return false;
     }
 
-    public boolean contains(int[] array, int object) {
+    public boolean containsAny(boolean[] array, boolean value) {
         return false;
     }
 
-    public boolean contains(long[] array, long object) {
+    public boolean containsAny(byte[] array, byte value) {
         return false;
     }
 
-    public boolean contains(float[] array, float object) {
+    public boolean containsAny(char[] array, char value) {
         return false;
     }
 
-    public boolean contains(double[] array, double object) {
+    public boolean containsAny(short[] array, short value) {
         return false;
     }
 
-    public boolean containsAny(String str, String... subStrs) {
+    public boolean containsAny(int[] array, int value) {
         return false;
     }
 
-    public boolean containsAny(Collection<?> collection, Object... objects) {
+    public boolean containsAny(long[] array, long value) {
         return false;
     }
 
-    public boolean containsAny(Object[] array, Object object) {
+    public boolean containsAny(float[] array, float value) {
         return false;
     }
 
-    public boolean containsAny(boolean[] array, boolean object) {
+    public boolean containsAny(double[] array, double value) {
         return false;
     }
 
-    public boolean containsAny(byte[] array, byte object) {
+    public boolean containsAll(String str, String... values) {
         return false;
     }
 
-    public boolean containsAny(char[] array, char object) {
+    public boolean containsAll(Collection<?> collection, Object... values) {
         return false;
     }
 
-    public boolean containsAny(short[] array, short object) {
+    public boolean containsAll(Object[] array, Object value) {
         return false;
     }
 
-    public boolean containsAny(int[] array, int object) {
+    public boolean containsAll(boolean[] array, boolean value) {
         return false;
     }
 
-    public boolean containsAny(long[] array, long object) {
+    public boolean containsAll(byte[] array, byte value) {
         return false;
     }
 
-    public boolean containsAny(float[] array, float object) {
+    public boolean containsAll(char[] array, char value) {
         return false;
     }
 
-    public boolean containsAny(double[] array, double object) {
+    public boolean containsAll(short[] array, short value) {
         return false;
     }
 
-    public boolean containsAll(String str, String... subStrs) {
+    public boolean containsAll(int[] array, int value) {
         return false;
     }
 
-    public boolean containsAll(Collection<?> collection, Object... objects) {
+    public boolean containsAll(long[] array, long value) {
         return false;
     }
 
-    public boolean containsAll(Object[] array, Object object) {
+    public boolean containsAll(float[] array, float value) {
         return false;
     }
 
-    public boolean containsAll(boolean[] array, boolean object) {
-        return false;
-    }
-
-    public boolean containsAll(byte[] array, byte object) {
-        return false;
-    }
-
-    public boolean containsAll(char[] array, char object) {
-        return false;
-    }
-
-    public boolean containsAll(short[] array, short object) {
-        return false;
-    }
-
-    public boolean containsAll(int[] array, int object) {
-        return false;
-    }
-
-    public boolean containsAll(long[] array, long object) {
-        return false;
-    }
-
-    public boolean containsAll(float[] array, float object) {
-        return false;
-    }
-
-    public boolean containsAll(double[] array, double object) {
+    public boolean containsAll(double[] array, double value) {
         return false;
     }
 }

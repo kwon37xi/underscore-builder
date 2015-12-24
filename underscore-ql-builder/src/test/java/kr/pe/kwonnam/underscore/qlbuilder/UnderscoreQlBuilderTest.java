@@ -185,4 +185,99 @@ public class UnderscoreQlBuilderTest {
         assertThat(underscoreQlBuilder.contains(new Object[]{"Hello", "World", "Good", "Morning"}, "World"), is(true));
         assertThat(underscoreQlBuilder.contains(new Object[]{"Hello", "World", "Good", "Morning"}, "Morning"), is(true));
     }
+
+    @Test
+    public void contains_boolean_array() throws Exception {
+        assertThat(underscoreQlBuilder.contains(null, true), is(false));
+        assertThat(underscoreQlBuilder.contains(null, false), is(false));
+        assertThat(underscoreQlBuilder.contains(new boolean[]{true}, false), is(false));
+        assertThat(underscoreQlBuilder.contains(new boolean[]{false}, true), is(false));
+
+        assertThat(underscoreQlBuilder.contains(new boolean[]{true, false}, false), is(true));
+        assertThat(underscoreQlBuilder.contains(new boolean[]{false, true}, true), is(true));
+    }
+
+    @Test
+    public void contains_byte_array() throws Exception {
+        assertThat(underscoreQlBuilder.contains((byte[]) null, (byte) 1), is(false));
+        assertThat(underscoreQlBuilder.contains(new byte[]{}, (byte) 2), is(false));
+        assertThat(underscoreQlBuilder.contains(new byte[]{1, 2, 3, 4, 5}, (byte) -1), is(false));
+        assertThat(underscoreQlBuilder.contains(new byte[]{1, 2, 3, 4, 5}, (byte) 6), is(false));
+
+        assertThat(underscoreQlBuilder.contains(new byte[]{1, 2, 3, 4, 5}, (byte) 1), is(true));
+        assertThat(underscoreQlBuilder.contains(new byte[]{1, 2, 3, 4, 5}, (byte) 3), is(true));
+        assertThat(underscoreQlBuilder.contains(new byte[]{1, 2, 3, 4, 5}, (byte) 5), is(true));
+    }
+
+    @Test
+    public void contains_char_array() throws Exception {
+        assertThat(underscoreQlBuilder.contains((char[]) null, 'a'), is(false));
+        assertThat(underscoreQlBuilder.contains(new char[]{}, 'a'), is(false));
+        assertThat(underscoreQlBuilder.contains(new char[]{'a', 'b', 'c', 'd', 'e'}, 'x'), is(false));
+        assertThat(underscoreQlBuilder.contains(new char[]{'a', 'b', 'c', 'd', 'e'}, 'z'), is(false));
+
+        assertThat(underscoreQlBuilder.contains(new char[]{'a', 'b', 'c', 'd', 'e'}, 'a'), is(true));
+        assertThat(underscoreQlBuilder.contains(new char[]{'a', 'b', 'c', 'd', 'e'}, 'c'), is(true));
+        assertThat(underscoreQlBuilder.contains(new char[]{'a', 'b', 'c', 'd', 'e'}, 'e'), is(true));
+    }
+
+    @Test
+    public void contains_short_array() throws Exception {
+        assertThat(underscoreQlBuilder.contains((short[]) null, (short) 1), is(false));
+        assertThat(underscoreQlBuilder.contains(new short[]{}, (short) 1), is(false));
+        assertThat(underscoreQlBuilder.contains(new short[]{1, 2, 3, 4, 5}, (short) -1), is(false));
+        assertThat(underscoreQlBuilder.contains(new short[]{1, 2, 3, 4, 5}, (short) 6), is(false));
+
+        assertThat(underscoreQlBuilder.contains(new short[]{1, 2, 3, 4, 5}, (short) 1), is(true));
+        assertThat(underscoreQlBuilder.contains(new short[]{1, 2, 3, 4, 5}, (short) 3), is(true));
+        assertThat(underscoreQlBuilder.contains(new short[]{1, 2, 3, 4, 5}, (short) 5), is(true));
+    }
+
+    @Test
+    public void contains_int_array() throws Exception {
+        assertThat(underscoreQlBuilder.contains((int[]) null, 1), is(false));
+        assertThat(underscoreQlBuilder.contains(new int[]{}, 1), is(false));
+        assertThat(underscoreQlBuilder.contains(new int[]{1, 2, 3, 4, 5}, -1), is(false));
+        assertThat(underscoreQlBuilder.contains(new int[]{1, 2, 3, 4, 5}, 6), is(false));
+
+        assertThat(underscoreQlBuilder.contains(new int[]{1, 2, 3, 4, 5}, 1), is(true));
+        assertThat(underscoreQlBuilder.contains(new int[]{1, 2, 3, 4, 5}, 3), is(true));
+        assertThat(underscoreQlBuilder.contains(new int[]{1, 2, 3, 4, 5}, 5), is(true));
+    }
+
+    @Test
+    public void contains_long_array() throws Exception {
+        assertThat(underscoreQlBuilder.contains((long[]) null, 1L), is(false));
+        assertThat(underscoreQlBuilder.contains(new long[]{}, 1L), is(false));
+        assertThat(underscoreQlBuilder.contains(new long[]{1L, 2L, 3L, 4L, 5L}, -1L), is(false));
+        assertThat(underscoreQlBuilder.contains(new long[]{1L, 2L, 3L, 4L, 5L}, 6L), is(false));
+
+        assertThat(underscoreQlBuilder.contains(new long[]{1L, 2L, 3L, 4L, 5L}, 1L), is(true));
+        assertThat(underscoreQlBuilder.contains(new long[]{1L, 2L, 3L, 4L, 5L}, 3L), is(true));
+        assertThat(underscoreQlBuilder.contains(new long[]{1L, 2L, 3L, 4L, 5L}, 5L), is(true));
+    }
+
+    @Test
+    public void contains_float_array() throws Exception {
+        assertThat(underscoreQlBuilder.contains((float[]) null, 1.1f), is(false));
+        assertThat(underscoreQlBuilder.contains(new float[]{}, 1.1f), is(false));
+        assertThat(underscoreQlBuilder.contains(new float[]{1.1f, 2.2f, 3.3f, 4.4f, 5.5f}, -1.1f), is(false));
+        assertThat(underscoreQlBuilder.contains(new float[]{1.1f, 2.2f, 3.3f, 4.4f, 5.5f}, 6.1f), is(false));
+
+        assertThat(underscoreQlBuilder.contains(new float[]{1.1f, 2.2f, 3.3f, 4.4f, 5.5f}, 1.1f), is(true));
+        assertThat(underscoreQlBuilder.contains(new float[]{1.1f, 2.2f, 3.3f, 4.4f, 5.5f}, 3.3f), is(true));
+        assertThat(underscoreQlBuilder.contains(new float[]{1.1f, 2.2f, 3.3f, 4.4f, 5.5f}, 5.5f), is(true));
+    }
+
+    @Test
+    public void contains_double_array() throws Exception {
+        assertThat(underscoreQlBuilder.contains(null, 1.1), is(false));
+        assertThat(underscoreQlBuilder.contains(new double[]{}, 1.1), is(false));
+        assertThat(underscoreQlBuilder.contains(new double[]{1.1, 2.2, 3.3, 4.4, 5.5}, -1.1), is(false));
+        assertThat(underscoreQlBuilder.contains(new double[]{1.1, 2.2, 3.3, 4.4, 5.5}, 6.1), is(false));
+
+        assertThat(underscoreQlBuilder.contains(new double[]{1.1, 2.2, 3.3, 4.4, 5.5}, 1.1), is(true));
+        assertThat(underscoreQlBuilder.contains(new double[]{1.1, 2.2, 3.3, 4.4, 5.5}, 3.3), is(true));
+        assertThat(underscoreQlBuilder.contains(new double[]{1.1, 2.2, 3.3, 4.4, 5.5}, 5.5), is(true));
+    }
 }
