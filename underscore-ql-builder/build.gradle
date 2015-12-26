@@ -3,5 +3,6 @@ ext {
 }
 dependencies {
     compile project(':underscore-string-builder')
+    compile 'org.apache.commons:commons-lang3:3.4'
 }
 apply from: '../gradle/upload_archives.gradle'
