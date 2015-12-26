@@ -128,7 +128,7 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
         if (predicate == null) {
             throw new IllegalArgumentException("underscorePredicate must not be null.");
         }
-        return sub(predicate.evaluate(), subBuild, transformer, (UnderscoreTransformer<? super CharSequence>[]) null);
+        return sub(predicate.evaluate(), subBuild, transformer, extraTransformers);
     }
 
     /**

@@ -360,6 +360,56 @@ public class UnderscoreStringBuilderTest {
     }
 
     @Test
+    public void sub_and_predicate_false_and_transformer() throws Exception {
+        underscoreStringBuilder
+            .__("(")
+            .sub(new UnderscorePredicate() {
+                @Override
+                public boolean evaluate() {
+                    return false;
+                }
+            }, new UnderscoreSubBuild() {
+                @Override
+                public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                    underscoreSubBuilder.__("world!");
+                }
+            }, new UnderscoreTransformer<UnderscoreStringBuilder>() {
+                @Override
+                public CharSequence transform(UnderscoreStringBuilder appendee) {
+                    return appendee.toString().toUpperCase();
+                }
+            }, wrap("{", "}"))
+            .__(")");
+
+        assertThat(underscoreStringBuilder.toString(), is("()"));
+    }
+
+    @Test
+    public void sub_and_predicate_true_and_transformer() throws Exception {
+        underscoreStringBuilder
+            .__("(")
+            .sub(new UnderscorePredicate() {
+                @Override
+                public boolean evaluate() {
+                    return true;
+                }
+            }, new UnderscoreSubBuild() {
+                @Override
+                public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+                    underscoreSubBuilder.__("world!");
+                }
+            }, new UnderscoreTransformer<UnderscoreStringBuilder>() {
+                @Override
+                public CharSequence transform(UnderscoreStringBuilder appendee) {
+                    return appendee.toString().toUpperCase();
+                }
+            }, wrap("{", "}"))
+            .__(")");
+
+        assertThat(underscoreStringBuilder.toString(), is("({WORLD!})"));
+    }
+
+    @Test
     public void length() throws Exception {
         underscoreStringBuilder.__("hello");
         assertThat(underscoreStringBuilder.length(), is(5));
