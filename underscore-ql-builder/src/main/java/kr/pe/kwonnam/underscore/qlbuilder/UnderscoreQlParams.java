@@ -1,6 +1,7 @@
 package kr.pe.kwonnam.underscore.qlbuilder;
 
 import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreTransformer;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -121,6 +122,71 @@ public class UnderscoreQlParams {
      */
     public UnderscoreQlInParamsTransformer inParams(Object[] inParams) {
         return new UnderscoreQlInParamsTransformer(this, inParams);
+    }
+
+    /**
+     * inParams for primitive booleans
+     *
+     * @see #inParams(Object[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(boolean[] inParams) {
+        return inParams(ArrayUtils.toObject(inParams));
+    }
+
+    /**
+     * inParams for primitive bytes
+     * @see #inParams(Object[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(byte[] inParams) {
+        return inParams(ArrayUtils.toObject(inParams));
+    }
+
+    /**
+     * inParams for primitive chars
+     * @see #inParams(Object[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(char[] inParams) {
+        return inParams(ArrayUtils.toObject(inParams));
+    }
+
+    /**
+     * inParams for primitive  shorts
+     * @see #inParams(Object[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(short[] inParams) {
+        return inParams(ArrayUtils.toObject(inParams));
+    }
+
+    /**
+     * inParams for primitive ints
+     * @see #inParams(Object[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(int[] inParams) {
+        return inParams(ArrayUtils.toObject(inParams));
+    }
+
+    /**
+     * inParams for primitive longs
+     * @see #inParams(Object[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(long[] inParams) {
+        return inParams(ArrayUtils.toObject(inParams));
+    }
+
+    /**
+     * inParams for primitive floats
+     * @see #inParams(Object[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(float[] inParams) {
+        return inParams(ArrayUtils.toObject(inParams));
+    }
+
+    /**
+     * inParams for primitive doubles
+     * @see #inParams(Object[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(double[] inParams) {
+        return inParams(ArrayUtils.toObject(inParams));
     }
 
     /**

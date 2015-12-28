@@ -106,6 +106,78 @@ public class UnderscoreQlInParamsTransformerTest {
     }
 
     @Test
+    public void inParams_primitive_booleans() throws Exception {
+        underscoreStringBuilder.__("some_value IN (%s)", underscoreQlParams.inParams(new boolean[]{true, false}));
+
+        assertThat(underscoreStringBuilder.toString(), is("some_value IN (?, ?)"));
+        assertThat(underscoreQlParams.getQueryParameters(), hasSize(2));
+        assertThat(underscoreQlParams.getQueryParameters(), hasItems((Object) Boolean.TRUE, Boolean.FALSE));
+    }
+
+    @Test
+    public void inParams_primitive_bytes() throws Exception {
+        underscoreStringBuilder.__("some_value IN (%s)", underscoreQlParams.inParams(new byte[]{1, 2, 3}));
+
+        assertThat(underscoreStringBuilder.toString(), is("some_value IN (?, ?, ?)"));
+        assertThat(underscoreQlParams.getQueryParameters(), hasSize(3));
+        assertThat(underscoreQlParams.getQueryParameters(), hasItems((Object) (byte) 1, (byte) 2, (byte) 3));
+    }
+
+    @Test
+    public void inParams_primitive_chars() throws Exception {
+        underscoreStringBuilder.__("some_value IN (%s)", underscoreQlParams.inParams(new char[]{'a', 'b', '가', '나'}));
+
+        assertThat(underscoreStringBuilder.toString(), is("some_value IN (?, ?, ?, ?)"));
+        assertThat(underscoreQlParams.getQueryParameters(), hasSize(4));
+        assertThat(underscoreQlParams.getQueryParameters(), hasItems((Object) 'a', 'b', '가', '나'));
+    }
+
+    @Test
+    public void inParams_primitive_shorts() throws Exception {
+        underscoreStringBuilder.__("some_value IN (%s)", underscoreQlParams.inParams(new short[]{100, 101, 0, -101}));
+
+        assertThat(underscoreStringBuilder.toString(), is("some_value IN (?, ?, ?, ?)"));
+        assertThat(underscoreQlParams.getQueryParameters(), hasSize(4));
+        assertThat(underscoreQlParams.getQueryParameters(), hasItems((Object) (short) 100, (short) 101, (short) 0, (short) -101));
+    }
+
+    @Test
+    public void inParams_primitive_ints() throws Exception {
+        underscoreStringBuilder.__("some_value IN (%s)", underscoreQlParams.inParams(new int[]{-500, 5000, 50000, 0}));
+
+        assertThat(underscoreStringBuilder.toString(), is("some_value IN (?, ?, ?, ?)"));
+        assertThat(underscoreQlParams.getQueryParameters(), hasSize(4));
+        assertThat(underscoreQlParams.getQueryParameters(), hasItems((Object) (-500), 5000, 50000, 0));
+    }
+
+    @Test
+    public void inParams_primitive_longs() throws Exception {
+        underscoreStringBuilder.__("some_value IN (%s)", underscoreQlParams.inParams(new long[]{-500L, 5000L, Long.MAX_VALUE, 0L}));
+
+        assertThat(underscoreStringBuilder.toString(), is("some_value IN (?, ?, ?, ?)"));
+        assertThat(underscoreQlParams.getQueryParameters(), hasSize(4));
+        assertThat(underscoreQlParams.getQueryParameters(), hasItems((Object) (-500L), 5000L, Long.MAX_VALUE, 0L));
+    }
+
+    @Test
+    public void inParams_primitive_floats() throws Exception {
+        underscoreStringBuilder.__("some_value IN (%s)", underscoreQlParams.inParams(new float[]{3.14f, 109.1f}));
+
+        assertThat(underscoreStringBuilder.toString(), is("some_value IN (?, ?)"));
+        assertThat(underscoreQlParams.getQueryParameters(), hasSize(2));
+        assertThat(underscoreQlParams.getQueryParameters(), hasItems((Object) 3.14f, 109.1f));
+    }
+
+    @Test
+    public void inParams_primitive_doubles() throws Exception {
+        underscoreStringBuilder.__("some_value IN (%s)", underscoreQlParams.inParams(new double[]{3.14, 109.1}));
+
+        assertThat(underscoreStringBuilder.toString(), is("some_value IN (?, ?)"));
+        assertThat(underscoreQlParams.getQueryParameters(), hasSize(2));
+        assertThat(underscoreQlParams.getQueryParameters(), hasItems((Object) 3.14, 109.1));
+    }
+
+    @Test
     public void inParams_iterable() throws Exception {
         underscoreStringBuilder.__("user_id IN (%s)", underscoreQlParams.inParams(new ArrayList<String>(Arrays.asList("scott", "tiger", "jane"))));
 
@@ -121,6 +193,5 @@ public class UnderscoreQlInParamsTransformerTest {
         assertThat(underscoreStringBuilder.toString(), is("user_id IN (?1, ?2, ?3)"));
         assertThat(underscoreQlParamsWithPositionalIndex.getQueryParameters(), hasSize(3));
         assertThat(underscoreQlParamsWithPositionalIndex.getQueryParameters(), hasItems((Object) "scott", "tiger", "jane"));
-
     }
 }
