@@ -4,6 +4,7 @@ import kr.pe.kwonnam.underscore.stringbuilder.UnderscorePredicate;
 import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreStringBuilder;
 import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreSubBuild;
 import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreTransformer;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -26,10 +27,66 @@ public class UnderscoreQlBuilder implements CharSequence, Appendable {
     }
 
     /**
-     * @see UnderscoreQlBuilder#params(Object...)
+     * @see UnderscoreQlParams#params(Object...)
      */
     public UnderscoreQlParamsTransformer params(Object... params) {
         return underscoreQlParams.params(params);
+    }
+
+    /**
+     * @see UnderscoreQlParams#inParams(boolean[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(boolean[] inParams) {
+        return underscoreQlParams.inParams(inParams);
+    }
+
+    /**
+     * @see UnderscoreQlParams#inParams(byte[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(byte[] inParams) {
+        return underscoreQlParams.inParams(inParams);
+    }
+
+    /**
+     * @see UnderscoreQlParams#inParams(char[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(char[] inParams) {
+        return underscoreQlParams.inParams(inParams);
+    }
+
+    /**
+     * @see UnderscoreQlParams#inParams(short[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(short[] inParams) {
+        return underscoreQlParams.inParams(inParams);
+    }
+
+    /**
+     * @see UnderscoreQlParams#inParams(int[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(int[] inParams) {
+        return underscoreQlParams.inParams(inParams);
+    }
+
+    /**
+     * @see UnderscoreQlParams#inParams(long[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(long[] inParams) {
+        return underscoreQlParams.inParams(inParams);
+    }
+
+    /**
+     * @see UnderscoreQlParams#inParams(float[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(float[] inParams) {
+        return underscoreQlParams.inParams(inParams);
+    }
+
+    /**
+     * @see UnderscoreQlParams#inParams(double[])
+     */
+    public UnderscoreQlInParamsTransformer inParams(double[] inParams) {
+        return underscoreQlParams.inParams(inParams);
     }
 
     /**
