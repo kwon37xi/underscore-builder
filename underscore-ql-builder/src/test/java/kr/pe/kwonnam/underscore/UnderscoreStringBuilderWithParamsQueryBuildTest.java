@@ -44,7 +44,7 @@ public class UnderscoreStringBuilderWithParamsQueryBuildTest extends AbstractQue
                         .__(CollectionUtils.isNotEmpty(zipCodes), "AND zip_code in (%s)", qlParams.inParams(zipCodes));
                 }
             }, trim(trimOpts().prefix("WHERE ").prefixOverrides("AND ", "OR ")))
-            .__("LIMIT ?", qlParams.params(10));
+            .__("LIMIT %s", qlParams.params(10));
 
         log.info("UnderscoreStringBuilder with UnderscoreQlParams : {}", usb.toString());
         log.info("Query Parameters : {}", qlParams.getQueryParameters());
