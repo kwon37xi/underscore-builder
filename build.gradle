@@ -13,7 +13,7 @@ subprojects {
     apply plugin: 'maven'
     apply plugin: 'signing'
 
-    project.version = '0.1-SNAPSHOT'
+    project.version = '0.1'
     project.group = 'kr.pe.kwonnam.underscorebuilder'
 
     repositories {
