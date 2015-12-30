@@ -1,5 +1,5 @@
 ext {
-    projectModuleDescription = 'Underscore QL Builder'
+    projectModuleDescription = 'Underscore QL Params'
 }
 dependencies {
     compile project(':underscore-string-builder')

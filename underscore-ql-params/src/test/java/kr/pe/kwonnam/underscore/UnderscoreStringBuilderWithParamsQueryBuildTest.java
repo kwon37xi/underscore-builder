@@ -1,7 +1,6 @@
 package kr.pe.kwonnam.underscore;
 
-import kr.pe.kwonnam.underscore.qlbuilder.UnderscoreQlParams;
-import kr.pe.kwonnam.underscore.stringbuilder.UnderscorePredicate;
+import kr.pe.kwonnam.underscore.qlparams.UnderscoreQlParams;
 import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreStringBuilder;
 import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreSubBuild;
 import org.apache.commons.collections4.CollectionUtils;

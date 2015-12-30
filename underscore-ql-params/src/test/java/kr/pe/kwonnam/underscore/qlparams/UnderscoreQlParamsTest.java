@@ -1,9 +1,7 @@
-package kr.pe.kwonnam.underscore.qlbuilder;
+package kr.pe.kwonnam.underscore.qlparams;
 
 import org.hamcrest.CoreMatchers;
-import org.hamcrest.Matchers;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

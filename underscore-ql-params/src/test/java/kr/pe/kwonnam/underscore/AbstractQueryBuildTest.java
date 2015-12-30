@@ -16,7 +16,7 @@ public abstract class AbstractQueryBuildTest {
         user = new User();
 
         user.setUserId(10001L);
-        user.setName("UnderscoreQlBuilder");
+        user.setName("UnderscoreQlParams");
         user.setBirthday(new SimpleDateFormat("yyyy/MM/dd").parse("2015/12/11"));
         user.setEmail("someone@email.com");
 

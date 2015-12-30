@@ -1,4 +1,4 @@
-package kr.pe.kwonnam.underscore.qlbuilder;
+package kr.pe.kwonnam.underscore.qlparams;
 
 import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreTransformer;
 import org.apache.commons.lang3.ArrayUtils;
