@@ -24,19 +24,38 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
         this.stringBuilder = stringBuilder;
     }
 
+    /**
+     * @see #__(boolean, Object, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public <A> UnderscoreStringBuilder __(A appendee) {
         return __(true, appendee);
     }
 
+    /**
+     * @see #__(boolean, Object, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public <A> UnderscoreStringBuilder __(boolean appendable, A appendee) {
         return __(appendable, appendee, null, (UnderscoreTransformer<? super CharSequence>[]) null);
     }
 
+    /**
+     * @see #__(boolean, Object, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public <A> UnderscoreStringBuilder __(A appendee, UnderscoreTransformer<A> transformer,
                                           UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         return __(true, appendee, transformer, extraTransformers);
     }
 
+    /**
+     * Appends <code>appendee</code> if <code>appendable</code>is true and transforms the appendee with transformer and extranTransformers.
+     *
+     * @param appendable whether append the appendee or not.
+     * @param appendee an object that will be converted to string
+     * @param transformer transformer to transform the appendee
+     * @param extraTransformers extra transformers to transform the result of the transformer.
+     * @param <A> appendee's type
+     * @return this
+     */
     public <A> UnderscoreStringBuilder __(boolean appendable, A appendee, UnderscoreTransformer<A> transformer,
                                           UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         if (!appendable) {
@@ -78,10 +97,18 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
         }
     }
 
+    /**
+     * <code>predicate</code>'s result will be <code>appendable</code> value.
+     * @see #__(boolean, Object, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public <A> UnderscoreStringBuilder __(UnderscorePredicate predicate, A appendee) {
         return __(predicate, appendee, null, (UnderscoreTransformer<? super CharSequence>[]) null);
     }
 
+    /**
+     * <code>predicate</code>'s result will be <code>appendable</code> value.
+     * @see #__(boolean, Object, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public <A> UnderscoreStringBuilder __(UnderscorePredicate predicate, A appendee, UnderscoreTransformer<A> transformer,
                                           UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         if (predicate == null) {
@@ -90,19 +117,33 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
         return __(predicate.evaluate(), appendee, transformer, extraTransformers);
     }
 
+
+    /**
+     * @see #sub(boolean, UnderscoreSubBuild, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public UnderscoreStringBuilder sub(UnderscoreSubBuild subBuild) {
         return sub(true, subBuild);
     }
 
+    /**
+     * @see #sub(boolean, UnderscoreSubBuild, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public UnderscoreStringBuilder sub(UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer,
                                        UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         return sub(true, subBuild, transformer, extraTransformers);
     }
 
+    /**
+     * @see #sub(boolean, UnderscoreSubBuild, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public UnderscoreStringBuilder sub(boolean appendable, UnderscoreSubBuild subBuild) {
         return sub(appendable, subBuild, null, (UnderscoreTransformer<? super CharSequence>[]) null);
     }
 
+    /**
+     * Executes <code>subBuild</code> then add the result to this character sequence.
+     * @see #__(boolean, Object, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public UnderscoreStringBuilder sub(boolean appendable, UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer,
                                        UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         if (!appendable) {
@@ -119,10 +160,18 @@ public final class UnderscoreStringBuilder implements CharSequence, Appendable {
         return __(subBuilder, transformer, extraTransformers);
     }
 
+    /**
+     * <code>predicate</code>'s result will be <code>appendable</code> value.
+     * @see #sub(boolean, UnderscoreSubBuild, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public UnderscoreStringBuilder sub(UnderscorePredicate predicate, UnderscoreSubBuild subBuild) {
         return sub(predicate, subBuild, null, (UnderscoreTransformer<? super CharSequence>[]) null);
     }
 
+    /**
+     * <code>predicate</code>'s result will be <code>appendable</code> value.
+     * @see #sub(boolean, UnderscoreSubBuild, UnderscoreTransformer, UnderscoreTransformer[])
+     */
     public UnderscoreStringBuilder sub(UnderscorePredicate predicate, UnderscoreSubBuild subBuild, UnderscoreTransformer<? super UnderscoreStringBuilder> transformer,
                                        UnderscoreTransformer<? super CharSequence>... extraTransformers) {
         if (predicate == null) {
