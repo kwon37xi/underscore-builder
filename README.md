@@ -93,7 +93,7 @@ compile '"kr.pe.kwonnam.underscorebuilder:underscore-ql-params:${version}"
   * `UnderscoreQlInParamsTransformer inParams(Iterable<?> inParams|Object[] inParams|...)`
   * `List<Object> getQueryParameters()` : Query Parameters
   * `void bindParameters(PreparedStatement preparedStatement)` : bind query parameters to `PreparedStatement`
-  *
+
 ### Usage examples
 ```java
 import static kr.pe.kwonnam.underscore.stringbuilder.UnderscoreStringBuilderTransformers.join;
