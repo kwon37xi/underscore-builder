@@ -2,7 +2,7 @@
 Build strings and SQL/JPQL/HQL more conveniently.
 
 ## Requirements
-* Java 6 or later
+* Java 6+
 
 ## Underscore String Builder
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/kr.pe.kwonnam.underscorebuilder/underscore-string-builder/badge.svg)](https://maven-badges.herokuapp.com/maven-central/kr.pe.kwonnam.underscorebuilder/underscore-string-builder)
