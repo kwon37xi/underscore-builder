@@ -10,6 +10,20 @@ Build strings and SQL/JPQL/HQL more conveniently.
 [UnderscoreStringBuilder](https://github.com/kwon37xi/underscore-builder/blob/master/underscore-string-builder/src/main/java/kr/pe/kwonnam/underscore/stringbuilder/UnderscoreStringBuilder.java) is a replacement for [java.util.StringBuilder](https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html).
 Actually I made this for building dynamic SQL/JPQL/HQL with pure java codes. Please refer to Underscore QL Params.
 
+### Dependency Configuration
+#### Gradle
+```groovy
+compile "kr.pe.kwonnam.underscorebuilder:underscore-string-builder:${version}"
+```
+#### Maven
+```xml
+<dependency>
+    <groupId>kr.pe.kwonnam.underscorebuilder</groupId>
+    <artifactId>underscore-string-builder</artifactId>
+    <version>${version}</version>
+</dependency>
+```
+
 ### Core API
 There are two core methods in [UnderscoreStringBuilder](https://github.com/kwon37xi/underscore-builder/blob/master/underscore-string-builder/src/main/java/kr/pe/kwonnam/underscore/stringbuilder/UnderscoreStringBuilder.java).
 
@@ -59,3 +73,17 @@ underscoreStringBuilder
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/kr.pe.kwonnam.underscorebuilder/underscore-ql-params/badge.svg)](https://maven-badges.herokuapp.com/maven-central/kr.pe.kwonnam.underscorebuilder/underscore-ql-params)
 
 Build SQL/JPQL/HQL with Underscore String Builder in a easy way.
+
+### Dependency Configuration
+#### Gradle
+```groovy
+compile '"kr.pe.kwonnam.underscorebuilder:underscore-ql-params:${version}"
+```
+#### Maven
+```xml
+<dependency>
+    <groupId>kr.pe.kwonnam.underscorebuilder</groupId>
+    <artifactId>underscore-ql-params</artifactId>
+    <version>${version}</version>
+</dependency>
+```
