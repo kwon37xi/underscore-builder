@@ -109,7 +109,8 @@ user.setEmail("someone@email.com");
 
 List<String> zipCodes = Arrays.asList("12345", "56789", "58391");
 
-UnderscoreQlParams qlParams = new UnderscoreQlParams(); // If you want JPQL indexed positional parameters, use UnderscoreQlParams.withPositionalIndex()
+UnderscoreQlParams qlParams = new UnderscoreQlParams();
+// If you want JPQL indexed positional parameters, use UnderscoreQlParams.withPositionalIndex()
 UnderscoreStringBuilder usb = new UnderscoreStringBuilder()
     .__("SELECT ").suffixNewLine()
     .__(", ", join(User.COLUMNS))
