@@ -72,7 +72,7 @@ underscoreStringBuilder
 ## Underscore QL Params
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/kr.pe.kwonnam.underscorebuilder/underscore-ql-params/badge.svg)](https://maven-badges.herokuapp.com/maven-central/kr.pe.kwonnam.underscorebuilder/underscore-ql-params)
 
-With [UnderscoreQlParams](https://github.com/kwon37xi/underscore-builder/blob/master/underscore-ql-params/src/main/java/kr/pe/kwonnam/underscore/qlparams/UnderscoreQlParams.java) and `UnderscoreStringBuilder`, you can buile SQL/JPQL/HQL with  more conveniently.
+With [UnderscoreQlParams](https://github.com/kwon37xi/underscore-builder/blob/master/underscore-ql-params/src/main/java/kr/pe/kwonnam/underscore/qlparams/UnderscoreQlParams.java) and `UnderscoreStringBuilder`, you can buile SQL/JPQL/HQL more conveniently.
 
 ### Dependency Configuration
 #### Gradle
