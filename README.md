@@ -1,5 +1,5 @@
 # Underscore Builders for Java
-Build strings and sql/jpql/hql in a easy way.
+Build strings and SQL/JPQL/HQL more conveniently.
 
 ## Requirements
 * Java 6 or later
@@ -22,12 +22,38 @@ These two methods append the `appendee` or the result of `subBuild` to the `Unde
 * `suffix*()` : suffix the `appendee` every time unti `suffixOff()` called.
 
 * [UnderscoreStringBuilderTransformers](https://github.com/kwon37xi/underscore-builder/blob/master/underscore-string-builder/src/main/java/kr/pe/kwonnam/underscore/stringbuilder/UnderscoreStringBuilderTransformers.java) : Built-in transformers. you can join, multiply, (String)format, dateFormat, wrap, trim and etc.
+  * join
+  * format // String.format
+  * dateFormat // with SimpleDateFormat
+  * wrap
+  * multiply
+  * trim : see [Trim](https://github.com/kwon37xi/underscore-builder/blob/master/underscore-string-builder/src/main/java/kr/pe/kwonnam/underscore/stringbuilder/transformers/trim/Trim.java) and [TrimOpts](https://github.com/kwon37xi/underscore-builder/blob/master/underscore-string-builder/src/main/java/kr/pe/kwonnam/underscore/stringbuilder/transformers/trim/TrimOpts.java)
 
 ### Usage examples
 ```java
+import kr.pe.kwonnam.underscore.stringbuilder.UnderscoreStringBuilder;
+import static kr.pe.kwonnam.underscore.stringbuilder.UnderscoreStringBuilderTransformers.*;
 
+UnderscoreStringBuilder underscoreStringBuilder = new UnderscoreStringBuilder();
+
+int[] ints = new int[] { 1, 2, 3, 4, 5};
+
+underscoreStringBuilder
+    .__("hello! ") // append "hello! "
+    .__(user.getName() != null, user.getName()) // append user.getName() when user.getName() is not null
+    .__(", ", join(ints)) // append "1, 2, 3, 4, 5"
+    .__("=", multiply(20, "-"), wrap("[", "]")) // append "[=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=]"
+    .__("Hello [%10s] [%7d]~", format("World", 12345)) // append ""Hello [     World] [  12345]~"
+    .sub(user != null, new UnderscoreSubBuild() { // append underscoreSubBuilder result when user is not null
+           @Override
+           public void subbuild(UnderscoreStringBuilder underscoreSubBuilder) {
+               underscoreSubBuilder
+                    .suffix("\n") // suffix every appendee with "\n"
+                    .__(user.getName())
+                    .__(user.getBirthday(), dateFormat("yyyy/MM/dd"));
+           }
+       });
 ```
-
 
 ## Underscore QL Params
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/kr.pe.kwonnam.underscorebuilder/underscore-ql-params/badge.svg)](https://maven-badges.herokuapp.com/maven-central/kr.pe.kwonnam.underscorebuilder/underscore-ql-params)

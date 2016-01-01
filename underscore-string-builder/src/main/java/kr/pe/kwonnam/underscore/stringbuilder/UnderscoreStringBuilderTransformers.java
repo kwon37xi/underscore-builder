@@ -68,6 +68,19 @@ public abstract class UnderscoreStringBuilderTransformers {
         return trim(null);
     }
 
+    /**
+     * Trims the appendee with {@link TrimOpts} options.
+     * <br>
+     * <pre>
+     * import static kr.pe.kwonnam.underscore.stringbuilder.transformers.trim.TrimOpts.trimOpts;
+     *
+     * underscoreStringBuilder.__("    \t\t\r\nAND Hello World!, \r \t",
+     *     trim(trimOpts().prefix("[").prefixOverrides("OR ", "AND ").suffix("]").suffixOverrides(".", ",")))
+     * </pre>
+     *
+     * @param trimOps trim options
+     * @return trim transformer
+     */
     public static UnderscoreTrimTransformer trim(TrimOpts trimOps) {
         return new UnderscoreTrimTransformer(trimOps);
     }
