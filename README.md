@@ -21,7 +21,7 @@ These two methods append the `appendee` or the result of `subBuild` to the `Unde
 * `prefix*()` : prefix the `appendde` every time until `prefixOff()` called.
 * `suffix*()` : suffix the `appendee` every time unti `suffixOff()` called.
 
-* [UnderscoreStringBuilderTransformers](https://github.com/kwon37xi/underscore-builder/blob/master/underscore-string-builder/src/main/java/kr/pe/kwonnam/underscore/stringbuilder/UnderscoreStringBuilderTransformers.java) : Built-in transformers. you can join, multiply, (String)format, dateFormat, wrap, trim and etc.
+* [UnderscoreStringBuilderTransformers](https://github.com/kwon37xi/underscore-builder/blob/master/underscore-string-builder/src/main/java/kr/pe/kwonnam/underscore/stringbuilder/UnderscoreStringBuilderTransformers.java) : Built-in transformers.
   * join
   * format // String.format
   * dateFormat // with SimpleDateFormat
